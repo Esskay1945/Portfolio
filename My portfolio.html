@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth Kumar | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --background: 0 0% 4%;
+            --foreground: 40 15% 90%;
+            --card: 0 0% 7%;
+            --card-foreground: 40 15% 90%;
+            --primary: 43 74% 49%;
+            --primary-foreground: 0 0% 4%;
+            --muted: 0 0% 15%;
+            --muted-foreground: 0 0% 55%;
+            --gold: 43 74% 49%;
+            --gold-light: 45 85% 58%;
+            --charcoal: 215 13% 8%;
+            --charcoal-light: 220 10% 12%;
+            --border: 0 0% 11%;
+            --smoke: 0 0% 12%;
+            --hero-grad: linear-gradient(135deg, rgba(245,158,11,0.18) 0%, rgba(11,18,32,0.0) 35%, rgba(255,184,77,0.06) 100%);
+            --card-accent-grad: linear-gradient(120deg, rgba(15,23,42,0.6) 0%, rgba(11,18,32,0.85) 60%);
+        }
+
+        html, body { height: 100%; }
+        
+        body {
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* UTILITIES */
+        .hero-bg { background-image: var(--hero-grad); }
+        
+        .card-cinematic {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 20px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+            will-change: transform; 
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-light)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
+            color: hsl(var(--primary-foreground));
+            border: none;
+            border-radius: 14px;
+            padding: 0.65rem 1.25rem;
+            font-weight: 600;
+            box-shadow: 0 6px 25px rgba(15,23,42,0.35);
+            transition: transform .18s ease, filter .18s ease;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.01);
+            filter: brightness(1.04);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: hsl(var(--foreground));
+            border-radius: 14px;
+            padding: 0.65rem 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.18s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: hsl(var(--gold));
+            color: hsl(var(--gold));
+        }
+
+        /* ANIMATIONS */
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slide-up {
+            0% { opacity: 0; transform: translateY(60px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px hsl(var(--gold)/0.3); }
+            50% { box-shadow: 0 0 40px hsl(var(--gold)/0.5); }
+        }
+
+        @keyframes scale-in {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-fade-up { animation: fade-up .8s ease-out forwards; }
+        .animate-fade-in { animation: fade-in .6s ease-out forwards; }
+        .animate-slide-up { animation: slide-up .7s cubic-bezier(.16,1,.3,1) forwards; }
+        .animate-glow { animation: glow-pulse 2s ease-in-out infinite; }
+        .animate-scale-in { animation: scale-in .6s ease-out forwards; }
+
+        /* VIEWS */
+        #main-content {
+            display: block;
+            visibility: visible;
+        }
+
+        .view { 
+            display: none;
+        }
+        
+        .view.active { 
+            display: block;
+        }
+
+        /* NEW DASHBOARD HERO */
+        .hero-section {
+            padding: 6rem 0 3rem; 
+            text-align: center;
+        }
+        .intro-hero {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(38px, 8vw, 72px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .intro-subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            color: hsl(var(--muted-foreground));
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* MAIN CARDS */
+        .main-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 3rem 0 6rem; 
+            align-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .main-cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .main-cards-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .main-card {
+            position: relative;
+            padding: 2rem;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            overflow: hidden;
+            will-change: transform; 
+        }
+
+        .main-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, hsl(var(--gold)), hsl(var(--gold-light)));
+        }
+
+        .main-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+        }
+
+        .main-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--gold-light));
+        }
+
+        .main-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-card-desc {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.95rem;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 1.25rem 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: hsl(var(--background) / 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(var(--foreground));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: hsl(var(--gold));
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: hsl(var(--gold));
+        }
+
+        .admin-btn {
+            background: hsl(var(--gold));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 6px 30px rgba(245,158,11,0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: block; 
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(245,158,11,0.6);
+        }
+
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .admin-modal.active {
+            display: flex !important;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .admin-content {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 5vh;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .admin-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .admin-content .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: hsl(var(--muted-foreground));
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .admin-content .close-btn:hover {
+            color: hsl(var(--gold));
+        }
+
+        .admin-form-group {
+            margin-bottom: 1rem;
+        }
+
+        .admin-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: hsl(var(--gold));
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: hsl(var(--charcoal-light));
+            border: 1px solid hsl(var(--border));
+            border-radius: 10px;
+            color: hsl(var(--foreground));
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: hsl(var(--gold));
+            background: rgba(255,255,255,0.05);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag-input-item {
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: hsl(var(--gold-light));
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tag-remove {
+            background: none;
+            border: none;
+            color: currentColor;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        .admin-actions button {
+            margin-left: 0.5rem;
+        }
+
+        .admin-item {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-item h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .admin-item p {
+            margin: 0.25rem 0 0;
+            font-size: 0.85rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .btn-edit {
+            background: hsl(var(--gold));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .admin-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: 15px;
+        }
+
+        .admin-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid hsl(var(--border));
+            padding-bottom: 0.5rem;
+        }
+        
+        .admin-login {
+            max-width: 400px;
+            margin: 10vh auto 0;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* GENERAL SECTION STYLES */
+        .section-header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: hsl(var(--muted-foreground));
+            font-size: 1.1rem;
+        }
+
+        /* ABOUT VIEW */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .about-section {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: hsl(var(--gold-light));
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: hsl(var(--foreground));
+            margin-bottom: 1rem;
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-item h4 {
+            font-size: 1.3rem;
+            color: hsl(var(--gold));
+            margin-bottom: 0.25rem;
+        }
+
+        .education-item p {
+            color: hsl(var(--muted-foreground));
+            margin: 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: hsl(var(--gold-light));
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            border-color: hsl(var(--gold));
+            transform: translateY(-2px);
+        }
+
+        /* JOB SIMULATIONS */
+        .simulations-section {
+            padding: 2rem 0 3rem;
+        }
+
+        .simulation-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-left: 4px solid hsl(var(--gold));
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .simulation-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .simulation-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: hsl(var(--gold-light));
+            margin-bottom: 0.5rem;
+        }
+
+        .simulation-company {
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.5rem;
+        }
+
+        .simulation-desc {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* PROJECTS VIEW */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .project-card {
+            cursor: pointer;
+            transition: transform 0.18s ease;
+            position: relative;
+            background: hsl(var(--card));
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid hsl(var(--border));
+            will-change: transform; 
+        }
+        
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(245,158,11,0.1);
+            color: hsl(var(--gold-light));
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* PROJECT DETAIL VIEW */
+        #project-detail-view {
+            padding: 4rem 0 6rem;
+            position: relative;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid hsl(var(--border));
+            color: hsl(var(--foreground));
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            border-color: hsl(var(--gold));
+            color: hsl(var(--gold));
+        }
+
+        .detail-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .detail-desc {
+            font-size: 1.15rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
+        }
+        
+        .detail-section {
+            padding: 1.5rem 0;
+            border-top: 1px dashed hsl(var(--border));
+        }
+
+        .detail-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: hsl(var(--gold));
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-list { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .feature-item {
+            background: hsl(var(--card));
+            padding: 1rem;
+            border-left: 3px solid hsl(var(--gold));
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .project-action-btn {
+            margin-top: 2rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* TOOLS VIEW */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .tool-category {
+            flex: 1 1 300px;
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .tool-category:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .tool-category::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: var(--card-accent-grad);
+            z-index: 1;
+        }
+
+        .tool-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tool-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: hsl(var(--gold-light));
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tool-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .tool-item:hover {
+            border-color: hsl(var(--gold));
+            transform: translateY(-2px);
+        }
+
+        /* EXPERIENCE TIMELINE */
+        .timeline {
+            position: relative;
+            padding: 3rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: hsl(var(--border));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 10px 0;
+            width: 50%;
+            padding-right: 30px;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+            will-change: transform; 
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 30px;
+            padding-right: 0;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            right: -8px;
+            background: hsl(var(--gold));
+            top: 15px;
+            z-index: 1;
+            border: 3px solid hsl(var(--background));
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+        }
+
+        .timeline-content {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 0;
+            color: hsl(var(--gold-light));
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-content li {
+            font-size: 0.9rem;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.25rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '•';
+            color: hsl(var(--gold));
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* MEDIA QUERIES FOR TIMELINE */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 10px;
+                transform: translateX(0);
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 30px;
+                padding-right: 0;
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 30px;
+            }
+
+            .timeline-item::after {
+                left: 6px;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 6px;
+            }
+        }
+
+        /* CERTIFICATIONS VIEW */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 3rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .certs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .certs-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .cert-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            will-change: transform; 
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, hsl(var(--gold)));
+            opacity: 0.6;
+            transition: width 0.3s ease;
+        }
+
+        .cert-card:hover::before {
+            width: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .cert-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: hsl(var(--gold-light));
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .cert-date {
+            font-size: 0.85rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: hsl(var(--charcoal));
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid hsl(var(--border));
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            color: hsl(var(--muted-foreground));
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: hsl(var(--gold));
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 1024px) {
+            .detail-header {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body class="hero-bg">
+    
+    <header id="main-header">
+        <div class="container">
+            <nav>
+                <div class="logo">Siddharth K.</div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-view="home">Home</a>
+                    <a href="#" class="nav-link" data-view="projects">Projects</a>
+                    <a href="#" class="nav-link" data-view="tools">Tech Stack</a>
+                    <a href="#" class="nav-link" data-view="experience">Experience</a>
+                    <a href="#" class="nav-link" data-view="certifications">Certifications</a>
+                    <a href="#" class="nav-link" data-view="about">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="main-content" class="container"> 
+
+        <div id="home-view" class="view active">
+            <section class="hero-section" id="dashboard-hero">
+                <h1 class="intro-hero text-gradient-gold animate-fade-up" style="animation-delay: 0.1s;">
+                    <span id="time-based-greeting"></span>, <br>I'm Siddharth Kumar
+                </h1>
+                <p class="intro-subtitle animate-fade-up" style="animation-delay: 0.2s;">
+                    Welcome to my dynamic portfolio. Scroll down to explore my core areas of expertise.
+                </p>
+            </section>
+            
+            <div class="main-cards-grid">
+                <div class="main-card card-cinematic animate-slide-up" data-view="projects" tabindex="0" role="button" style="animation-delay: 0.3s;">
+                    <span class="main-card-icon">💻</span>
+                    <h3 class="main-card-title">Projects</h3>
+                    <p class="main-card-desc">Showcasing my full-stack and AI applications.</p>
+                </div>
+                <div class="main-card card-cinematic animate-slide-up" data-view="tools" tabindex="0" role="button" style="animation-delay: 0.4s;">
+                    <span class="main-card-icon">🛠️</span>
+                    <h3 class="main-card-title">Tech Stack</h3>
+                    <p class="main-card-desc">The languages, frameworks, and tools I master.</p>
+                </div>
+                <div class="main-card card-cinematic animate-slide-up" data-view="experience" tabindex="0" role="button" style="animation-delay: 0.5s;">
+                    <span class="main-card-icon">💼</span>
+                    <h3 class="main-card-title">Experience</h3>
+                    <p class="main-card-desc">My professional and academic journey.</p>
+                </div>
+                <div class="main-card card-cinematic animate-slide-up" data-view="certifications" tabindex="0" role="button" style="animation-delay: 0.6s;">
+                    <span class="main-card-icon">🏅</span>
+                    <h3 class="main-card-title">Certifications</h3>
+                    <p class="main-card-desc">Documented skills and industry simulations.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="about-view" class="view">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-gradient-gold">About Me</span></h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content" id="about-content"></div>
+        </div>
+
+        <div id="projects-view" class="view">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-gradient-gold">Projects</span></h2>
+                <p class="section-subtitle">A collection of my recent work in development and AI.</p>
+            </div>
+            <div class="projects-grid" id="projects-grid"></div>
+        </div>
+
+        <div id="project-detail-view" class="view">
+            <button class="back-btn" id="back-to-projects">← Back to All Projects</button>
+            <div id="project-detail-content"></div>
+        </div>
+        
+        <div id="tools-view" class="view">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-gradient-gold">Tech Stack</span></h2>
+                <p class="section-subtitle">My core technical competencies.</p>
+            </div>
+            <div class="tools-grid" id="tools-grid"></div>
+        </div>
+
+        <div id="experience-view" class="view">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-gradient-gold">Experience</span></h2>
+                <p class="section-subtitle">My professional journey</p>
+            </div>
+            <div class="timeline" id="experience-timeline"></div>
+        </div>
+
+        <div id="certifications-view" class="view">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-gradient-gold">Certifications & Simulations</span></h2>
+                <p class="section-subtitle">Industry simulations and validated expertise.</p>
+            </div>
+            
+            <div class="simulations-section" id="simulations-section"></div>
+            
+            <div class="certs-grid" id="certs-grid"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Esskay1945" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.43 9.8 8.21 11.38.6.11.82-.26.82-.57 0-.28-.01-1.01-.02-2c-3.33.72-4.04-1.61-4.04-1.61-.54-1.36-1.32-1.72-1.32-1.72-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.77.42-1.3.77-1.6-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.46-2.38 1.22-3.22-.12-.3-.53-1.52.12-3.18 0 0 .99-.32 3.24 1.23.94-.26 1.94-.39 2.94-.39 1 0 2 .13 2.94.39 2.25-1.55 3.24-1.23 3.24-1.23.65 1.66.24 2.88.12 3.18.76.84 1.22 1.91 1.22 3.22 0 4.61-2.81 5.61-5.49 5.92.43.37.82 1.12.82 2.27 0 1.63-.01 2.94-.01 3.34 0 .31.22.68.83.57C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/siddharth-kumar-3b74482b4/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zM8 19h-3v-11h3v11zM6.5 6.73c-.96 0-1.75-.79-1.75-1.76s.79-1.76 1.75-1.76 1.75.79 1.75 1.76-.79 1.76-1.75 1.76zM20 19h-3v-5.63c0-3.37-4-3.52-4 0v5.63h-3v-11h3v1.76s1.69-2.22 4-2.22c2.82 0 5 2.18 5 6.55v5.91z"/></svg>
+                </a>
+                <a href="mailto:23107044@gmail.com" class="social-link" aria-label="Email">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+            </div>
+            <p class="footer-text">&copy; <span id="current-year">2023</span> Siddharth Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="admin-btn animate-glow" id="open-admin-modal">Admin Mode</button>
+
+    <div class="admin-modal" id="admin-modal">
+        <div class="admin-content admin-login" id="admin-login-content">
+            <button class="close-btn" id="close-login-btn">×</button>
+            <h2>Admin Login</h2>
+            <div class="admin-form-group">
+                <label for="about-email">Email</label>
+                <input type="email" id="about-email" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-phone">Phone</label>
+                <input type="text" id="about-phone" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="admin-email">Email</label>
+                <input type="email" id="admin-email" class="form-input" placeholder="Enter admin email">
+            </div>
+            <div class="admin-form-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" class="form-input" placeholder="Enter password">
+            </div>
+            <button class="btn-primary" id="login-btn">Login</button>
+        </div>
+
+        <div class="admin-content" id="admin-dashboard" style="display: none;">
+            <button class="close-btn" id="close-dashboard-btn">×</button>
+            <h2>Admin Dashboard</h2>
+            <button class="btn-secondary" id="logout-btn" style="float: right; margin-bottom: 1rem;">Logout</button>
+            
+            <div class="admin-section">
+                <h3>About Me <button class="btn-primary" id="edit-about-btn">Edit</button></h3>
+                <div id="about-admin-preview"></div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Job Simulations <button class="btn-primary" id="add-simulation-btn">+ Add New</button></h3>
+                <div id="simulations-admin-list"></div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Projects <button class="btn-primary" id="add-project-btn">+ Add New</button></h3>
+                <div id="projects-admin-list"></div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Certifications <button class="btn-primary" id="add-cert-btn">+ Add New</button></h3>
+                <div id="certs-admin-list"></div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Experience <button class="btn-primary" id="add-exp-btn">+ Add New</button></h3>
+                <div id="exp-admin-list"></div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Tech Stack <button class="btn-primary" id="add-tool-btn">+ Add Category</button></h3>
+                <div id="tools-admin-list"></div>
+            </div>
+        </div>
+
+        <div class="admin-content" id="about-form" style="display: none;">
+            <button class="close-btn" id="close-about-form-btn">×</button>
+            <h2>Edit About Me</h2>
+            <div class="admin-form-group">
+                <label for="about-bio">Bio</label>
+                <textarea id="about-bio" class="form-textarea" rows="4"></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label for="about-institution">Institution</label>
+                <input type="text" id="about-institution" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-degree">Degree & Department</label>
+                <input type="text" id="about-degree" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-graduation">Expected Graduation</label>
+                <input type="text" id="about-graduation" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label>Soft Skills (Enter and press Enter)</label>
+                <div id="about-skills-tags" class="tag-input-container"></div>
+                <input type="text" id="about-skills-input" class="form-input" placeholder="e.g., Leadership">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-location">Location</label>
+                <input type="text" id="about-location" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-github">GitHub URL</label>
+                <input type="text" id="about-github" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="about-linkedin">LinkedIn URL</label>
+                <input type="text" id="about-linkedin" class="form-input">
+            </div>
+            <button class="btn-primary" id="save-about-btn">Save Changes</button>
+        </div>
+
+        <div class="admin-content" id="simulation-form" style="display: none;">
+            <button class="close-btn" id="close-simulation-form-btn">×</button>
+            <h2 id="simulation-form-title">Add New Simulation</h2>
+            <div class="admin-form-group">
+                <label for="sim-company">Company</label>
+                <input type="text" id="sim-company" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="sim-title">Title</label>
+                <input type="text" id="sim-title" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="sim-desc">Description</label>
+                <textarea id="sim-desc" class="form-textarea"></textarea>
+            </div>
+            <button class="btn-primary" id="save-simulation-btn">Save Simulation</button>
+        </div>
+
+        <div class="admin-content" id="project-form" style="display: none;">
+            <button class="close-btn" id="close-project-form-btn">×</button>
+            <h2 id="project-form-title">Add New Project</h2>
+            <div class="admin-form-group">
+                <label for="p-title">Title</label>
+                <input type="text" id="p-title" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="p-id">ID (e.g., my-project)</label>
+                <input type="text" id="p-id" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="p-desc">Description</label>
+                <textarea id="p-desc" class="form-textarea"></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label for="p-githubUrl">GitHub URL</label>
+                <input type="text" id="p-githubUrl" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label>Tech Stack (Enter and press Enter)</label>
+                <div id="p-tech-tags" class="tag-input-container"></div>
+                <input type="text" id="p-tech-input" class="form-input" placeholder="e.g., Python, JavaScript">
+            </div>
+            <div class="admin-form-group">
+                <label>Features (Enter and press Enter)</label>
+                <div id="p-feature-tags" class="tag-input-container"></div>
+                <input type="text" id="p-feature-input" class="form-input" placeholder="e.g., Secure Login">
+            </div>
+            <button class="btn-primary" id="save-project-btn">Save Project</button>
+        </div>
+
+        <div class="admin-content" id="cert-form" style="display: none;">
+            <button class="close-btn" id="close-cert-form-btn">×</button>
+            <h2 id="cert-form-title">Add New Certification</h2>
+            <div class="admin-form-group">
+                <label for="c-title">Title</label>
+                <input type="text" id="c-title" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="c-issuer">Issuer</label>
+                <input type="text" id="c-issuer" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="c-date">Date (e.g., March 2025)</label>
+                <input type="text" id="c-date" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="c-category">Category (e.g., Databases)</label>
+                <input type="text" id="c-category" class="form-input">
+            </div>
+            <button class="btn-primary" id="save-cert-btn">Save Certification</button>
+        </div>
+
+        <div class="admin-content" id="exp-form" style="display: none;">
+            <button class="close-btn" id="close-exp-form-btn">×</button>
+            <h2 id="exp-form-title">Add New Experience</h2>
+            <div class="admin-form-group">
+                <label for="e-role">Role</label>
+                <input type="text" id="e-role" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="e-company">Company/Organization</label>
+                <input type="text" id="e-company" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="e-start">Start Date (e.g., September 2024)</label>
+                <input type="text" id="e-start" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label for="e-end">End Date (e.g., Present)</label>
+                <input type="text" id="e-end" class="form-input">
+            </div>
+            <div class="admin-form-group">
+                <label>Key Responsibilities (Enter and press Enter)</label>
+                <div id="e-bullet-tags" class="tag-input-container"></div>
+                <input type="text" id="e-bullet-input" class="form-input" placeholder="e.g., Lead design strategy">
+            </div>
+            <button class="btn-primary" id="save-exp-btn">Save Experience</button>
+        </div>
+
+    </div>
+
+    <script>
+        const qs = (selector) => document.querySelector(selector);
+        const qsa = (selector) => document.querySelectorAll(selector);
+
+        let aboutData = {
+            bio: "Third-year Computer Science Engineering student specializing in Data Science with strong expertise in full-stack web development and Python programming. Proven track record in data analytics, cloud computing, and generative AI through multiple industry simulations. Active leader in college technical clubs with hands-on experience in event management, design strategy, and education. Passionate about leveraging technology to solve real-world problems through data-driven solutions.",
+            institution: "A.P. Shah Institute of Technology, Thane",
+            degree: "Bachelor of Engineering - Computer Science Engineering (Data Science)",
+            graduation: "June 2027",
+            skills: ["Data Analysis & Visualization", "Full-Stack Web Development", "Team Collaboration & Leadership", "Project Management", "Communication & Public Speaking", "Time Management", "Analytical Thinking", "Multitasking Abilities"],
+            location: "Kasarvadavali, Thane (W), Maharashtra",
+            github: "https://github.com/esskay1945",
+            linkedin: "https://www.linkedin.com/in/siddharth-kumar-3b74482b4/",
+            email: "23107044@apsit.edu.in",
+            phone: "+91 9833601469"
+        };
+
+        let simulationsData = [
+            {
+                id: "jpmorgan",
+                company: "JPMorgan Chase & Co.",
+                title: "Software Engineering Job Simulation",
+                description: "Completed practical tasks including project setup, Kafka integration, H2 database integration, and REST API development. Gained hands-on experience with financial technology systems and industry-standard software engineering practices used in enterprise environments."
+            },
+            {
+                id: "hcltech",
+                company: "HCLTech",
+                title: "AI Job Simulation",
+                description: "Engaged in real-world AI challenges including data extraction & analysis and AI-powered financial chatbot development. Developed practical solutions for automated data processing and intelligent conversational systems used in financial services."
+            },
+            {
+                id: "deloitte",
+                company: "Deloitte",
+                title: "Data Analytics Job Simulation",
+                description: "Performed comprehensive data analysis and forensic technology tasks. Applied analytical frameworks to solve complex business problems, conducted detailed investigations, and communicated findings effectively using data-driven methodologies."
+            }
+        ];
+
+        let projectsData = [
+            {
+                id: "legalease",
+                title: "LegalEase AI",
+                description: "An open-source AI assistant for Indian case law. Built with the Indian Kanoon API, FAISS, and Google Gemini, it helps users search, explore, and summarize court cases with secure login, profile management, contract drafting, and an AI-powered chatbot.",
+                techStack: ["Node.js", "Express.js", "SQLite", "Python", "FastAPI", "Google Gemini", "FAISS", "LangChain"],
+                githubUrl: "https://github.com/Esskay1945/LegalEaseAi",
+                features: [
+                    "JWT-based secure authentication & user management",
+                    "AI case law summarization with Google Gemini + FAISS RAG",
+                    "Contract Generator with 6+ professional templates",
+                    "Integration with Indian Kanoon API for live case data",
+                    "Interactive AI chatbot for legal research",
+                    "Modern glassmorphism dashboard UI"
+                ]
+            },
+            {
+                id: "voxify",
+                title: "Voxify",
+                description: "Professional medical voice transcription with AI-powered intelligence. Train once on your medical documents, then enjoy clean, professional transcriptions forever. Features intelligent filler word removal while preserving medical terminology. 100% local, HIPAA-friendly.",
+                techStack: ["Python", "OpenAI Whisper", "CustomTkinter", "NumPy", "SciPy"],
+                githubUrl: "https://github.com/Esskay1945/Voxify",
+                features: [
+                    "AI-powered transcription using Whisper model",
+                    "One-time training on medical reference documents",
+                    "Batch processing for multiple audio files",
+                    "Smart cleaning removes fillers, keeps medical terms",
+                    "Persistent database saves training permanently",
+                    "Modern dark-themed UI with progress tracking"
+                ]
+            },
+            {
+                id: "facefusion",
+                title: "FaceFusion",
+                description: "AI-Powered Face Averager using computer vision. Takes multiple face images, detects facial landmarks with MediaPipe, aligns them, and blends them together to generate a single composite average face representing combined features of all inputs.",
+                techStack: ["Python", "OpenCV", "MediaPipe", "NumPy"],
+                githubUrl: "https://github.com/Esskay1945/FaceFusion",
+                features: [
+                    "Face detection using MediaPipe Face Mesh",
+                    "Facial landmark extraction and alignment",
+                    "Face warping and blending with OpenCV",
+                    "Automatic image size and shape normalization",
+                    "Generates merged composite image output"
+                ]
+            },
+            {
+                id: "cryptoview",
+                title: "CryptoView Dashboard",
+                description: "Real-time cryptocurrency tracking dashboard with clean UI and secure authentication. Fetches live data from CoinGecko API, displaying interactive charts and statistics for Bitcoin, Ethereum, Solana, and more. Designed to resemble TradingView's core experience.",
+                techStack: ["Python", "Streamlit", "Plotly", "CoinGecko API", "SQLite"],
+                githubUrl: "https://github.com/Esskay1945/CryptoView-A-Mini-Trading-Dashboard",
+                features: [
+                    "Real-time price tracking via CoinGecko API",
+                    "Secure email-based login with SQLite backend",
+                    "Interactive Plotly charts for visual insights",
+                    "24h high/low price metrics display",
+                    "Dropdown selection for multiple cryptocurrencies",
+                    "Clean, responsive UI for crypto enthusiasts"
+                ]
+            },
+            {
+                id: "liveboard",
+                title: "LiveBoard",
+                description: "A sleek, real-time data visualization app built with Streamlit. Watch your scores come to life with dynamic bar charts, instant updates every 2 seconds, and smart trend insights that highlight rising or falling values—all from a simple CSV file.",
+                techStack: ["Python", "Streamlit", "Pandas"],
+                githubUrl: "https://github.com/Esskay1945/LiveBoard",
+                features: [
+                    "Interactive data filtering by names",
+                    "Auto-refresh every 2 seconds for live updates",
+                    "Instant insights: average, max, min scores",
+                    "Trend detection highlights score changes",
+                    "Smart session state for accurate tracking",
+                    "Perfect for real-time performance monitoring"
+                ]
+            },
+            {
+                id: "taskmate",
+                title: "TaskMate",
+                description: "A lightweight Python-based task manager that helps you organize your daily to-dos efficiently. Uses SQLite as a local database to store tasks with names, due dates, and completion status. Simple console interface for quick task management.",
+                techStack: ["Python", "SQLite3"],
+                githubUrl: "https://github.com/Esskay1945/TaskMate",
+                features: [
+                    "Quick task addition with due dates",
+                    "View all pending and completed tasks",
+                    "Auto database setup with local tasks.db",
+                    "Status tracking (Pending/Completed)",
+                    "Simple console-based interface"
+                ]
+            },
+            {
+                id: "ping-my-heart",
+                title: "Ping My Heart",
+                description: "Tired of overthinking that text for 3 hours? Let this app do the asking! Generate cute, personalized date invites with animated hearts. Your crush clicks yes/no, you get an email notification. No awkward face-to-face rejection needed! 😎💔",
+                techStack: ["HTML", "CSS", "JavaScript", "Email Integration"],
+                githubUrl: "https://github.com/Esskay1945/Ping-my-heart",
+                features: [
+                    "Generate personalized date invitations",
+                    "Animated hearts and cute UI design",
+                    "Yes/No response tracking",
+                    "Email notifications for responses",
+                    "Save yourself from awkward rejections!"
+                ]
+            }
+        ];
+
+        let certificationsData = [
+            { id: "jpmorgan-sim", title: "Software Engineering Job Simulation", issuer: "JPMorgan Chase", date: "October 2025", category: "Industry Simulation" },
+            { id: "hcltech-sim", title: "AI Job Simulation", issuer: "HCLTech", date: "May-June 2025", category: "Industry Simulation" },
+            { id: "deloitte-sim", title: "Data Analytics Job Simulation", issuer: "Deloitte", date: "May 2025", category: "Industry Simulation" },
+            { id: "juniper", title: "JNCIA-Cloud", issuer: "Juniper Networks", date: "March 2025", category: "Cloud Computing" },
+            { id: "python1", title: "Python Essentials 1", issuer: "Cisco Networking Academy", date: "April 2025", category: "Programming" },
+            { id: "python2", title: "Python Essentials 2", issuer: "Cisco Networking Academy", date: "April 2025", category: "Programming" },
+            { id: "linux", title: "Linux Essentials", issuer: "Cisco Networking Academy", date: "April 2025", category: "DevOps" },
+            { id: "powerbi", title: "Data Visualization in Power BI", issuer: "DataCamp", date: "June 2025", category: "Data Science" },
+            { id: "ai-workshop", title: "Python Using AI Workshop", issuer: "AI for Techies", date: "February 2025", category: "AI/ML" },
+            { id: "process-mining", title: "Academic Process Mining Fundamentals", issuer: "Celonis", date: "June 2025", category: "Business Analytics" },
+            { id: "deliver-value", title: "Deliver Business Value with Celonis", issuer: "Celonis", date: "June 2025", category: "Business Analytics" },
+            { id: "rising-star", title: "Rising Star - Business", issuer: "Celonis", date: "June 2025", category: "Business Analytics" },
+            { id: "dbms", title: "DBMS Course - Master the Fundamentals and Advanced Concepts", issuer: "Scaler Topics", date: "March 2025", category: "Databases" }
+        ];
+        
+        let experienceData = [
+            { 
+                role: "Co-Head: Design", 
+                company: "DevOps Club, APSIT", 
+                start: "September 2024", 
+                end: "Present", 
+                bullets: [ 
+                    "Lead visual design strategy for club events, workshops, and digital presence", 
+                    "Create branding assets including posters, presentations, and social media content", 
+                    "Collaborate with core team members to establish consistent brand identity" 
+                ] 
+            },
+            { 
+                role: "Head: Event Management", 
+                company: "Cyber Security Club, APSIT", 
+                start: "September 2024", 
+                end: "Present", 
+                bullets: [ 
+                    "Organize and manage multiple college-level technical events", 
+                    "Handle logistics, promotion, and execution for cybersecurity workshops", 
+                    "Coordinate with cross-functional teams to ensure smooth operations" 
+                ] 
+            },
+            { 
+                role: "AIML Club Member", 
+                company: "APSIT", 
+                start: "September 2024", 
+                end: "Present", 
+                bullets: [ 
+                    "Actively participate in workshops, discussions, and technical activities", 
+                    "Contribute to machine learning and AI knowledge-sharing sessions" 
+                ] 
+            },
+            { 
+                role: "Teacher", 
+                company: "Shree Mayuresh Tutorials, Kalyan, India", 
+                start: "May 2023", 
+                end: "Present", 
+                bullets: [ 
+                    "Conducted supervised learning sessions to enhance peer learning experiences and improve student outcomes",
+                    "Implemented effective classroom management techniques to foster positive learning environments",
+                    "Assessed student performance through tests and assignments to guide personalized instruction",
+                    "Specialized in data analysis education for effective communication strategies"
+                ] 
+            }
+        ];
+
+        let toolsData = {
+            "Programming Languages": ["Python", "JavaScript", "HTML", "CSS"],
+            "Web Technologies": ["Node.js", "Express.js"],
+            "Tools & Frameworks": ["Streamlit", "SQL", "Kafka", "REST API", "H2 Database"],
+            "Databases": ["MySQL", "SQLite", "Django"],
+            "Cloud & DevOps": ["Cloud Computing (JNCIA-Cloud)", "Linux", "GitHub"],
+            "Data Skills": ["Data Analysis", "Data Visualization", "Power BI", "Process Mining", "Database Management Systems"]
+        };
+        
+        let currentView = 'home';
+        let projectsScrollPos = 0;
+
+        function switchView(viewName) {
+            if (viewName === currentView) return;
+
+            qsa('.view').forEach(view => view.classList.remove('active'));
+            qsa('.nav-link').forEach(link => link.classList.remove('active'));
+
+            qs(`#${viewName}-view`).classList.add('active');
+            const activeLink = qs(`.nav-link[data-view="${viewName}"]`);
+            if (activeLink) activeLink.classList.add('active');
+            
+            currentView = viewName;
+
+            if (viewName === 'projects') renderProjects();
+            if (viewName === 'tools') renderTools();
+            if (viewName === 'experience') renderExperience();
+            if (viewName === 'certifications') {
+                renderSimulations();
+                renderCertifications();
+            }
+            if (viewName === 'about') renderAbout();
+
+            if (viewName !== 'project-detail-view') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function renderAbout() {
+            const content = qs('#about-content');
+            content.innerHTML = `
+                <div class="about-section animate-fade-in">
+                    <h3>About Me</h3>
+                    <p>${aboutData.bio}</p>
+                </div>
+
+                <div class="about-section animate-fade-in" style="animation-delay: 0.1s;">
+                    <h3>Education</h3>
+                    <div class="education-item">
+                        <h4>${aboutData.degree}</h4>
+                        <p><strong>${aboutData.institution}</strong></p>
+                        <p>Expected Graduation: ${aboutData.graduation}</p>
+                    </div>
+                </div>
+
+                <div class="about-section animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3>Core Competencies</h3>
+                    <div class="skills-grid">
+                        ${aboutData.skills.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="about-section animate-fade-in" style="animation-delay: 0.3s;">
+                    <h3>Contact & Links</h3>
+                    <p><strong>📍 Location:</strong> ${aboutData.location}</p>
+                    <p><strong>📧 Email:</strong> ${aboutData.email}</p>
+                    <p><strong>📱 Phone:</strong> ${aboutData.phone}</p>
+                    <div class="contact-links">
+                        <a href="${aboutData.github}" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.43 9.8 8.21 11.38.6.11.82-.26.82-.57 0-.28-.01-1.01-.02-2c-3.33.72-4.04-1.61-4.04-1.61-.54-1.36-1.32-1.72-1.32-1.72-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.77.42-1.3.77-1.6-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.46-2.38 1.22-3.22-.12-.3-.53-1.52.12-3.18 0 0 .99-.32 3.24 1.23.94-.26 1.94-.39 2.94-.39 1 0 2 .13 2.94.39 2.25-1.55 3.24-1.23 3.24-1.23.65 1.66.24 2.88.12 3.18.76.84 1.22 1.91 1.22 3.22 0 4.61-2.81 5.61-5.49 5.92.43.37.82 1.12.82 2.27 0 1.63-.01 2.94-.01 3.34 0 .31.22.68.83.57C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="${aboutData.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zM8 19h-3v-11h3v11zM6.5 6.73c-.96 0-1.75-.79-1.75-1.76s.79-1.76 1.75-1.76 1.75.79 1.75 1.76-.79 1.76-1.75 1.76zM20 19h-3v-5.63c0-3.37-4-3.52-4 0v5.63h-3v-11h3v1.76s1.69-2.22 4-2.22c2.82 0 5 2.18 5 6.55v5.91z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">English - Proficient (C2)</div>
+                        <div class="skill-item">Marathi - Proficient (C2)</div>
+                        <div class="skill-item">Hindi - Proficient (C2)</div>
+                        <div class="skill-item">Tamil - Elementary (A2)</div>
+                        <div class="skill-item">Japanese - Beginner (A1)</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSimulations() {
+            const section = qs('#simulations-section');
+            if (simulationsData.length === 0) {
+                section.innerHTML = '';
+                return;
+            }
+            
+            section.innerHTML = `
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: hsl(var(--gold-light)); margin-bottom: 1.5rem; text-align: center;">Industry Job Simulations</h3>
+                ${simulationsData.map((sim, index) => `
+                    <div class="simulation-card animate-fade-in" style="animation-delay: ${0.1 + index * 0.05}s;">
+                        <div class="simulation-company">${sim.company}</div>
+                        <h4 class="simulation-title">${sim.title}</h4>
+                        <p class="simulation-desc">${sim.description}</p>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function renderProjects() {
+            const grid = qs('#projects-grid');
+            grid.innerHTML = projectsData.map(project => `
+                <div class="project-card card-cinematic animate-scale-in" data-id="${project.id}" tabindex="0" role="button">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-desc">${project.description}</p>
+                    <div class="tech-tags">
+                        ${project.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            qsa('.project-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    projectsScrollPos = window.scrollY;
+                    showProjectDetail(card.dataset.id);
+                });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
+                    }
+                });
+            });
+        }
+
+        function showProjectDetail(id) {
+            const project = projectsData.find(p => p.id === id);
+            
+            if (!project) {
+                alert("Project details could not be loaded.");
+                return;
+            }
+
+            qsa('.view').forEach(view => view.classList.remove('active'));
+            qs('#project-detail-view').classList.add('active');
+            currentView = 'project-detail';
+
+            const content = qs('#project-detail-content');
+            content.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-text">
+                        <h1 class="detail-title text-gradient-gold">${project.title}</h1>
+                        <p class="detail-desc">${project.description}</p>
+                        
+                        ${project.githubUrl ? 
+                            `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary project-action-btn">
+                                View on GitHub 🔗
+                            </a>` 
+                            : ''}
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Tech Stack</h3>
+                    <div class="tech-tags">
+                        ${project.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Key Features</h3>
+                    <ul class="features-list">
+                        ${project.features.map(feature => `<li class="feature-item">${feature}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function renderTools() {
+            const grid = qs('#tools-grid');
+            grid.innerHTML = Object.keys(toolsData).map(category => `
+                <div class="tool-category card-cinematic animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="tool-content">
+                        <h3 class="tool-category-title">${category}</h3>
+                        <div class="tool-list">
+                            ${toolsData[category].map(tool => `<span class="tool-item">${tool}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderExperience() {
+            const timeline = qs('#experience-timeline');
+            timeline.innerHTML = experienceData.map((exp, index) => `
+                <div class="timeline-item animate-slide-up" style="animation-delay: ${0.2 + index * 0.1}s;">
+                    <div class="timeline-content card-cinematic">
+                        <h4>${exp.role}</h4>
+                        <p><strong>${exp.company}</strong> | ${exp.start} - ${exp.end}</p>
+                        <ul>
+                            ${exp.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCertifications() {
+            const grid = qs('#certs-grid');
+            if (certificationsData.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: hsl(var(--muted-foreground)); grid-column: 1 / -1;">No certifications added yet.</p>';
+                return;
+            }
+            grid.innerHTML = certificationsData.map((cert, index) => `
+                <div class="cert-card card-cinematic animate-scale-in" style="animation-delay: ${0.2 + index * 0.05}s;">
+                    <div>
+                        <span class="cert-issuer">${cert.issuer}</span>
+                        <h3 class="cert-card-title">${cert.title}</h3>
+                    </div>
+                    <div>
+                        <p class="cert-date">${cert.date}</p>
+                        <span class="tech-tag">${cert.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return "Good Morning";
+            if (hour < 18) return "Good Afternoon";
+            return "Good Evening";
+        }
+
+        function init() {
+            qs('#current-year').textContent = new Date().getFullYear();
+            
+            const greetingElement = qs('#time-based-greeting');
+            if (greetingElement) {
+                greetingElement.textContent = getGreeting();
+            }
+
+            qsa('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    switchView(link.dataset.view);
+                });
+            });
+
+            qsa('.main-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const view = card.dataset.view;
+                    if (view) switchView(view);
+                });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const view = card.dataset.view;
+                        if (view) switchView(view);
+                    }
+                });
+            });
+
+            qs('#back-to-projects').addEventListener('click', () => {
+                switchView('projects');
+                window.scrollTo(0, projectsScrollPos);
+            });
+
+            window.addEventListener('scroll', () => {
+                const header = qs('#main-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            switchView('home');
+        }
+
+        const adminEmail = 'gojo194506@gmail.com';
+        const adminPassword = 'Coffee@030903';
+
+        function saveToStorage() {
+            const data = {
+                about: aboutData,
+                simulations: simulationsData,
+                projects: projectsData,
+                certifications: certificationsData,
+                experience: experienceData,
+                tools: toolsData
+            };
+            localStorage.setItem('portfolioData', JSON.stringify(data));
+        }
+
+        function loadFromStorage() {
+            const saved = localStorage.getItem('portfolioData');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    if (data.about) aboutData = data.about;
+                    if (data.simulations) simulationsData.length = 0, simulationsData.push(...data.simulations);
+                    if (data.projects) projectsData.length = 0, projectsData.push(...data.projects);
+                    if (data.certifications) certificationsData.length = 0, certificationsData.push(...data.certifications);
+                    if (data.experience) experienceData.length = 0, experienceData.push(...data.experience);
+                    if (data.tools) toolsData = data.tools;
+                } catch (e) {
+                    console.error("Error loading data:", e);
+                }
+            }
+        }
+        
+        function openAdminLogin() {
+            qs('#admin-modal').classList.add('active');
+            qs('#admin-login-content').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+            qs('#about-form').style.display = 'none';
+            qs('#simulation-form').style.display = 'none';
+            qs('#project-form').style.display = 'none';
+            qs('#cert-form').style.display = 'none';
+            qs('#exp-form').style.display = 'none';
+        }
+
+        function closeAdminModal() {
+            qs('#admin-modal').classList.remove('active');
+        }
+
+        function loginAdmin() {
+            const email = qs('#admin-email').value;
+            const password = qs('#admin-password').value;
+
+            if (email === adminEmail && password === adminPassword) {
+                localStorage.setItem('isAdmin', 'true');
+                qs('#admin-login-content').style.display = 'none';
+                qs('#admin-dashboard').style.display = 'block';
+                qs('.admin-btn').style.display = 'block';
+                alert('Admin Login Successful!');
+                renderAdminDashboard();
+            } else {
+                alert('Invalid Credentials');
+            }
+        }
+
+        function logoutAdmin() {
+            if (!confirm('Are you sure you want to log out?')) return;
+            localStorage.removeItem('isAdmin');
+            qs('.admin-btn').style.display = 'block';
+            closeAdminModal();
+        }
+
+        function checkAdminStatus() {
+            qs('.admin-btn').style.display = 'block';
+        }
+
+        function renderAdminDashboard() {
+            if (localStorage.getItem('isAdmin') !== 'true') return;
+            
+            qs('#admin-modal').classList.add('active');
+            qs('#admin-login-content').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+
+            renderAboutAdmin();
+            renderSimulationsAdmin();
+            renderProjectsAdmin();
+            renderCertsAdmin();
+            renderExpAdmin();
+            renderToolsAdmin();
+        }
+
+        // ABOUT ME ADMIN
+        let aboutSkillsTags = [];
+
+        function renderAboutAdmin() {
+            const preview = qs('#about-admin-preview');
+            preview.innerHTML = `
+                <div style="background: hsl(var(--charcoal-light)); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <p><strong>Bio:</strong> ${aboutData.bio.substring(0, 100)}...</p>
+                    <p><strong>Institution:</strong> ${aboutData.institution}</p>
+                    <p><strong>Skills:</strong> ${aboutData.skills.join(', ')}</p>
+                </div>
+            `;
+        }
+
+        function openAboutForm() {
+            qs('#about-form').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+
+            qs('#about-bio').value = aboutData.bio;
+            qs('#about-institution').value = aboutData.institution;
+            qs('#about-degree').value = aboutData.degree;
+            qs('#about-graduation').value = aboutData.graduation;
+            qs('#about-location').value = aboutData.location;
+            qs('#about-email').value = aboutData.email;
+            qs('#about-phone').value = aboutData.phone;
+            qs('#about-github').value = aboutData.github;
+            qs('#about-linkedin').value = aboutData.linkedin;
+
+            aboutSkillsTags = [...aboutData.skills];
+            renderTags(qs('#about-skills-tags'), aboutSkillsTags, 'removeAboutSkill');
+        }
+
+        function closeAboutForm() {
+            qs('#about-form').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+        }
+
+        qs('#about-skills-input').addEventListener('keydown', (e) => addTag(e, aboutSkillsTags, '#about-skills-tags', 'removeAboutSkill'));
+        function removeAboutSkill(index) {
+            aboutSkillsTags.splice(index, 1);
+            renderTags(qs('#about-skills-tags'), aboutSkillsTags, 'removeAboutSkill');
+        }
+
+        function saveAbout() {
+            aboutData.bio = qs('#about-bio').value.trim();
+            aboutData.institution = qs('#about-institution').value.trim();
+            aboutData.degree = qs('#about-degree').value.trim();
+            aboutData.graduation = qs('#about-graduation').value.trim();
+            aboutData.location = qs('#about-location').value.trim();
+            aboutData.github = qs('#about-github').value.trim();
+            aboutData.linkedin = qs('#about-linkedin').value.trim();
+            aboutData.skills = aboutSkillsTags;
+
+            saveToStorage();
+            renderAboutAdmin();
+            if (currentView === 'about') renderAbout();
+            alert('About Me updated successfully!');
+            closeAboutForm();
+        }
+
+        // JOB SIMULATIONS ADMIN
+        let editSimulationIndex = -1;
+
+        function renderSimulationsAdmin() {
+            const list = qs('#simulations-admin-list');
+            list.innerHTML = simulationsData.map((sim, i) => `
+                <div class="admin-item">
+                    <div>
+                        <h4>${sim.title}</h4>
+                        <p><strong>${sim.company}</strong></p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editSimulation(${i})">Edit</button>
+                        <button class="btn-delete" onclick="deleteSimulation(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openSimulationForm(index = -1) {
+            editSimulationIndex = index;
+            qs('#simulation-form').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+
+            const sim = index !== -1 ? simulationsData[index] : { company: '', title: '', description: '' };
+            
+            qs('#simulation-form-title').textContent = index !== -1 ? 'Edit Simulation' : 'Add New Simulation';
+            qs('#sim-company').value = sim.company;
+            qs('#sim-title').value = sim.title;
+            qs('#sim-desc').value = sim.description;
+        }
+
+        function closeSimulationForm() {
+            qs('#simulation-form').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+            editSimulationIndex = -1;
+        }
+
+        function saveSimulation() {
+            const company = qs('#sim-company').value.trim();
+            const title = qs('#sim-title').value.trim();
+            const description = qs('#sim-desc').value.trim();
+            const id = title.toLowerCase().replace(/\s+/g, '-').trim();
+
+            if (!company || !title || !description) {
+                alert('All fields are required!');
+                return;
+            }
+
+            const newSim = { id, company, title, description };
+
+            if (editSimulationIndex !== -1) {
+                simulationsData[editSimulationIndex] = newSim;
+                alert('Simulation updated successfully!');
+            } else {
+                simulationsData.push(newSim);
+                alert('Simulation added successfully!');
+            }
+
+            saveToStorage();
+            renderSimulationsAdmin();
+            if (currentView === 'certifications') renderSimulations();
+            closeSimulationForm();
+        }
+
+        function editSimulation(index) {
+            openSimulationForm(index);
+        }
+
+        function deleteSimulation(index) {
+            if (!confirm('Delete this simulation?')) return;
+            simulationsData.splice(index, 1);
+            saveToStorage();
+            renderSimulationsAdmin();
+            if (currentView === 'certifications') renderSimulations();
+        }
+
+        // PROJECTS ADMIN
+        let editProjectIndex = -1;
+        let pTechTags = [];
+        let pFeatureTags = [];
+
+        function renderProjectsAdmin() {
+            const list = qs('#projects-admin-list');
+            list.innerHTML = projectsData.map((p, i) => `
+                <div class="admin-item">
+                    <div>
+                        <h4>${p.title}</h4>
+                        <p><strong>ID:</strong> ${p.id}</p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editProject(${i})">Edit</button>
+                        <button class="btn-delete" onclick="deleteProject(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openProjectForm(index = -1) {
+            editProjectIndex = index;
+            qs('#project-form').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+            
+            const p = index !== -1 ? projectsData[index] : { title: '', id: '', description: '', githubUrl: '', techStack: [], features: [] };
+            
+            qs('#project-form-title').textContent = index !== -1 ? 'Edit Project' : 'Add New Project';
+            qs('#p-title').value = p.title;
+            qs('#p-id').value = p.id;
+            qs('#p-desc').value = p.description;
+            qs('#p-githubUrl').value = p.githubUrl;
+
+            qs('#p-id').disabled = index !== -1;
+
+            pTechTags = [...p.techStack];
+            pFeatureTags = [...p.features];
+
+            renderTags(qs('#p-tech-tags'), pTechTags, 'removeTechTag');
+            renderTags(qs('#p-feature-tags'), pFeatureTags, 'removeFeatureTag');
+        }
+
+        function closeProjectForm() {
+            qs('#project-form').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+            editProjectIndex = -1;
+        }
+
+        function renderTags(container, tags, removeFunction) {
+            container.innerHTML = tags.map((tag, index) => `
+                <span class="tag-input-item">${tag} <button class="tag-remove" onclick="${removeFunction}(${index})">×</button></span>
+            `).join('');
+        }
+
+        function addTag(e, tagsArray, containerId, removeFunction) {
+            if (e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                const input = e.target;
+                const tag = input.value.replace(/,$/, '').trim();
+                if (tag && !tagsArray.includes(tag)) {
+                    tagsArray.push(tag);
+                    input.value = '';
+                    renderTags(qs(containerId), tagsArray, removeFunction);
+                }
+            }
+        }
+
+        qs('#p-tech-input').addEventListener('keydown', (e) => addTag(e, pTechTags, '#p-tech-tags', 'removeTechTag'));
+        function removeTechTag(index) {
+            pTechTags.splice(index, 1);
+            renderTags(qs('#p-tech-tags'), pTechTags, 'removeTechTag');
+        }
+
+        qs('#p-feature-input').addEventListener('keydown', (e) => addTag(e, pFeatureTags, '#p-feature-tags', 'removeFeatureTag'));
+        function removeFeatureTag(index) {
+            pFeatureTags.splice(index, 1);
+            renderTags(qs('#p-feature-tags'), pFeatureTags, 'removeFeatureTag');
+        }
+
+        function saveProject() {
+            const id = qs('#p-id').value.toLowerCase().replace(/\s+/g, '-').trim();
+            const title = qs('#p-title').value.trim();
+            const description = qs('#p-desc').value.trim();
+            const githubUrl = qs('#p-githubUrl').value.trim();
+
+            if (!title || !id || !description) {
+                alert('Title, ID, and Description are required!');
+                return;
+            }
+
+            const newProject = {
+                id, title, description, githubUrl,
+                techStack: pTechTags,
+                features: pFeatureTags
+            };
+
+            if (editProjectIndex !== -1) {
+                projectsData[editProjectIndex] = newProject;
+                alert('Project updated successfully!');
+            } else {
+                if (projectsData.find(p => p.id === id)) {
+                    alert('Project with this ID already exists!');
+                    return;
+                }
+                projectsData.push(newProject);
+                alert('Project added successfully!');
+            }
+
+            saveToStorage();
+            renderProjectsAdmin();
+            if (currentView === 'projects' || currentView === 'project-detail-view') renderProjects();
+            closeProjectForm();
+        }
+
+        function editProject(index) {
+            openProjectForm(index);
+        }
+
+        function deleteProject(index) {
+            if (!confirm('Delete this project?')) return;
+            projectsData.splice(index, 1);
+            saveToStorage();
+            renderProjectsAdmin();
+            if (currentView === 'projects' || currentView === 'project-detail-view') renderProjects();
+        }
+
+        // CERTIFICATIONS ADMIN
+        let editCertIndex = -1;
+
+        function renderCertsAdmin() {
+            const list = qs('#certs-admin-list');
+            list.innerHTML = certificationsData.map((c, i) => `
+                <div class="admin-item">
+                    <div>
+                        <h4>${c.title}</h4>
+                        <p><strong>${c.issuer}</strong> • ${c.date}</p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editCert(${i})">Edit</button>
+                        <button class="btn-delete" onclick="deleteCert(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openCertForm(index = -1) {
+            editCertIndex = index;
+            qs('#cert-form').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+
+            const c = index !== -1 ? certificationsData[index] : { title: '', issuer: '', date: '', category: '' };
+            
+            qs('#cert-form-title').textContent = index !== -1 ? 'Edit Certification' : 'Add New Certification';
+            qs('#c-title').value = c.title;
+            qs('#c-issuer').value = c.issuer;
+            qs('#c-date').value = c.date;
+            qs('#c-category').value = c.category;
+        }
+
+        function closeCertForm() {
+            qs('#cert-form').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+            editCertIndex = -1;
+        }
+
+        function saveCert() {
+            const title = qs('#c-title').value.trim();
+            const issuer = qs('#c-issuer').value.trim();
+            const date = qs('#c-date').value.trim();
+            const category = qs('#c-category').value.trim();
+            const id = title.toLowerCase().replace(/\s+/g, '-').trim();
+
+            if (!title || !issuer || !date || !category) {
+                alert('All fields are required!');
+                return;
+            }
+
+            const newCert = { id, title, issuer, date, category };
+
+            if (editCertIndex !== -1) {
+                certificationsData[editCertIndex] = newCert;
+                alert('Certification updated successfully!');
+            } else {
+                certificationsData.push(newCert);
+                alert('Certification added successfully!');
+            }
+
+            saveToStorage();
+            renderCertsAdmin();
+            if (currentView === 'certifications') renderCertifications();
+            closeCertForm();
+        }
+
+        function editCert(index) {
+            openCertForm(index);
+        }
+
+        function deleteCert(index) {
+            if (!confirm('Delete this certification?')) return;
+            certificationsData.splice(index, 1);
+            saveToStorage();
+            renderCertsAdmin();
+            if (currentView === 'certifications') renderCertifications();
+        }
+
+        // EXPERIENCE ADMIN
+        let editExpIndex = -1;
+        let eBulletTags = [];
+
+        function renderExpAdmin() {
+            const list = qs('#exp-admin-list');
+            list.innerHTML = experienceData.map((e, i) => `
+                <div class="admin-item">
+                    <div>
+                        <h4>${e.role} at ${e.company}</h4>
+                        <p>${e.start} - ${e.end}</p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editExp(${i})">Edit</button>
+                        <button class="btn-delete" onclick="deleteExp(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openExpForm(index = -1) {
+            editExpIndex = index;
+            qs('#exp-form').style.display = 'block';
+            qs('#admin-dashboard').style.display = 'none';
+
+            const e = index !== -1 ? experienceData[index] : { role: '', company: '', start: '', end: '', bullets: [] };
+            
+            qs('#exp-form-title').textContent = index !== -1 ? 'Edit Experience' : 'Add New Experience';
+            qs('#e-role').value = e.role;
+            qs('#e-company').value = e.company;
+            qs('#e-start').value = e.start;
+            qs('#e-end').value = e.end;
+
+            eBulletTags = [...e.bullets];
+            renderTags(qs('#e-bullet-tags'), eBulletTags, 'removeExpBullet');
+        }
+
+        function closeExpForm() {
+            qs('#exp-form').style.display = 'none';
+            qs('#admin-dashboard').style.display = 'block';
+            editExpIndex = -1;
+        }
+
+        qs('#e-bullet-input').addEventListener('keydown', (e) => addTag(e, eBulletTags, '#e-bullet-tags', 'removeExpBullet'));
+        function removeExpBullet(index) {
+            eBulletTags.splice(index, 1);
+            renderTags(qs('#e-bullet-tags'), eBulletTags, 'removeExpBullet');
+        }
+
+        function saveExp() {
+            const role = qs('#e-role').value.trim();
+            const company = qs('#e-company').value.trim();
+            const start = qs('#e-start').value.trim();
+            const end = qs('#e-end').value.trim();
+
+            if (!role || !company || !start || !end || eBulletTags.length === 0) {
+                alert('All fields and at least one key responsibility are required!');
+                return;
+            }
+
+            const newExp = { role, company, start, end, bullets: eBulletTags };
+
+            if (editExpIndex !== -1) {
+                experienceData[editExpIndex] = newExp;
+            } else {
+                experienceData.push(newExp);
+            }
+
+            saveToStorage();
+            renderExpAdmin();
+            if (currentView === 'experience') renderExperience();
+            alert('Experience updated successfully!');
+            closeExpForm();
+        }
+
+        function editExp(index) {
+            openExpForm(index);
+        }
+
+        function deleteExp(index) {
+            if (!confirm('Delete this experience?')) return;
+            experienceData.splice(index, 1);
+            saveToStorage();
+            renderExpAdmin();
+            if (currentView === 'experience') renderExperience();
+        }
+
+        // TOOLS ADMIN
+        function renderToolsAdmin() {
+            const list = qs('#tools-admin-list');
+            list.innerHTML = Object.keys(toolsData).map(category => `
+                <div class="admin-item">
+                    <div>
+                        <h4>${category}</h4>
+                        <p>${toolsData[category].join(', ')}</p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editToolCategory('${category}')">Edit</button>
+                        <button class="btn-delete" onclick="deleteToolCategory('${category}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToolCategory() {
+            const category = prompt('New Category Name:');
+            if (!category) return;
+            
+            if (toolsData[category]) {
+                alert('Category already exists!');
+                return;
+            }
+            
+            const toolsInput = prompt('Tools (comma-separated):');
+            toolsData[category] = toolsInput ? toolsInput.split(',').map(t => t.trim()) : [];
+            
+            saveToStorage();
+            renderToolsAdmin();
+            if (currentView === 'tools') renderTools();
+            alert('Tool category added successfully!');
+        }
+
+        function editToolCategory(category) {
+            const newName = prompt('Category Name:', category);
+            if (!newName) return;
+            
+            const toolsInput = prompt('Tools (comma-separated):', toolsData[category].join(', '));
+            
+            if (newName !== category) {
+                toolsData[newName] = toolsData[category];
+                delete toolsData[category];
+                category = newName; 
+            }
+            
+            toolsData[category] = toolsInput ? toolsInput.split(',').map(t => t.trim()) : [];
+            
+            saveToStorage();
+            renderToolsAdmin();
+            if (currentView === 'tools') renderTools();
+            alert('Tool category updated successfully!');
+        }
+
+        function deleteToolCategory(category) {
+            if (!confirm(`Delete "${category}" category?`)) return;
+            delete toolsData[category];
+            saveToStorage();
+            renderToolsAdmin();
+            if (currentView === 'tools') renderTools();
+        }
+
+        // EVENT LISTENERS
+        qs('#open-admin-modal').addEventListener('click', openAdminLogin);
+        qs('#close-login-btn').addEventListener('click', closeAdminModal);
+        qs('#close-dashboard-btn').addEventListener('click', closeAdminModal);
+        qs('#close-about-form-btn').addEventListener('click', closeAboutForm);
+        qs('#close-simulation-form-btn').addEventListener('click', closeSimulationForm);
+        qs('#close-project-form-btn').addEventListener('click', closeProjectForm);
+        qs('#close-cert-form-btn').addEventListener('click', closeCertForm);
+        qs('#close-exp-form-btn').addEventListener('click', closeExpForm);
+        qs('#login-btn').addEventListener('click', loginAdmin);
+        qs('#logout-btn').addEventListener('click', logoutAdmin);
+        qs('#edit-about-btn').addEventListener('click', openAboutForm);
+        qs('#add-simulation-btn').addEventListener('click', () => openSimulationForm());
+        qs('#add-project-btn').addEventListener('click', () => openProjectForm());
+        qs('#add-cert-btn').addEventListener('click', () => openCertForm());
+        qs('#add-exp-btn').addEventListener('click', () => openExpForm());
+        qs('#add-tool-btn').addEventListener('click', addToolCategory);
+        qs('#save-about-btn').addEventListener('click', saveAbout);
+        qs('#save-simulation-btn').addEventListener('click', saveSimulation);
+        qs('#save-project-btn').addEventListener('click', saveProject);
+        qs('#save-cert-btn').addEventListener('click', saveCert);
+        qs('#save-exp-btn').addEventListener('click', saveExp);
+
+        loadFromStorage();
+        checkAdminStatus();
+        init();
+    </script>
+</body>
+</html>
