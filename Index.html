@@ -89,21 +89,18 @@
         }
 
         .card-cinematic {
-            background: rgba(10, 40, 60, 0.6);
-            /* Deep Blue Glass */
-            border: 1px solid rgba(34, 211, 238, 0.15);
-            /* Subtle Cyan Border */
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(16, 185, 129, 0.15);
             border-radius: 24px;
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
             box-shadow: var(--shadow-md);
             will-change: transform;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .card-cinematic:hover {
-            border-color: rgba(34, 211, 238, 0.6);
-            /* Bright Cyan Glow */
-            box-shadow: 0 0 30px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.05);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.25), inset 0 0 20px rgba(16, 185, 129, 0.05);
         }
 
         .text-gradient-gold {
@@ -296,6 +293,61 @@
             }
         }
 
+        /* CINEMATIC ELEMENTS */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #0a0f14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .splash-content {
+            text-align: center;
+            font-family: 'Inter', monospace;
+        }
+
+        .syntax-text {
+            font-size: 1.5rem;
+            color: hsl(var(--primary));
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        #splash-greeting {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .ambient-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* REVEAL ON SCROLL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* VIEWS */
         #main-content {
             display: block;
@@ -305,24 +357,124 @@
         .view {
             display: none;
             opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateX(30px);
+            filter: blur(10px);
         }
 
         .view.active {
             display: block;
-            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0);
+            animation: none;
+            /* Override old anim */
         }
 
-        @keyframes fadeInUp {
-            from {
+        .view.sliding-out {
+            display: block;
+            opacity: 0 !important;
+            transform: translateX(-50px) !important;
+            filter: blur(15px) !important;
+            pointer-events: none;
+        }
+
+        /* SPLASH ENHANCEMENTS */
+        .splash-terminal {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            width: clamp(200px, 40vw, 400px);
+            font-family: 'Inter', monospace;
+            font-size: 0.7rem;
+            color: hsl(var(--primary) / 0.5);
+            opacity: 0.7;
+            text-align: left;
+            pointer-events: none;
+            z-index: 10;
+            border-left: 1px solid hsl(var(--primary) / 0.2);
+            padding-left: 1rem;
+        }
+
+        .terminal-line {
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .binary-particle {
+            position: absolute;
+            color: hsl(var(--primary) / 0.08);
+            font-family: monospace;
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+            font-size: 0.8rem;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+                    rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
+            z-index: 9998;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+
+        /* DASHBOARD ENTRANCE ANIMATIONS */
+        @keyframes card-entrance {
+            0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: scale(0.9) translateY(30px);
             }
 
-            to {
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1) translateY(0);
             }
+        }
+
+        @keyframes sweep {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(200%) rotate(45deg);
+            }
+        }
+
+        .entrance-stagger {
+            opacity: 0;
+        }
+
+        .reveal-active .entrance-stagger {
+            animation: card-entrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .glow-sweep-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .glow-sweep {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(16, 185, 129, 0.2),
+                    transparent);
+            transform: skewX(-20deg);
+            animation: sweep 1.2s ease-in-out forwards;
+            animation-delay: inherit;
         }
 
         /* NEW DASHBOARD HERO */
@@ -643,8 +795,14 @@
         /* MOBILE FIX FOR OVERLAP */
         @media (max-width: 768px) {
             .hero-section {
-                padding-top: 13rem;
-                /* Significantly visual separation from fixed header */
+                padding-top: 0.5rem !important;
+                margin-top: 5rem !important;
+                /* Snapped to header while accounting for fixed logo */
+            }
+
+            .intro-hero {
+                font-size: 1.75rem !important;
+                margin-bottom: 0.5rem !important;
             }
         }
 
@@ -1198,6 +1356,22 @@
 
 <body class="hero-bg">
 
+    <div class="scanlines"></div>
+
+    <!-- CINEMATIC SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div id="splash-particles"></div>
+        <div class="splash-content">
+            <div id="splash-loader" class="syntax-text">// System Initializing...</div>
+            <div id="splash-greeting" class="syntax-text" style="display: none;">[ Hey, this is Sid ]</div>
+            <div id="splash-entry" class="syntax-text" style="display: none;">Entering Portfolio.exe</div>
+        </div>
+        <div class="splash-terminal" id="splash-terminal"></div>
+    </div>
+
+    <!-- AMBIENT BG GRID -->
+    <div class="ambient-grid"></div>
+
     <header id="main-header">
         <div class="container">
             <nav>
@@ -1223,36 +1397,48 @@
     <div id="main-content" class="container">
 
         <div id="home-view" class="view active">
-            <section class="hero-section" id="dashboard-hero">
-                <h1 class="intro-hero text-gradient-gold animate-fade-up" style="animation-delay: 0.1s;">
+            <section class="hero-section entrance-stagger" id="dashboard-hero" style="animation-delay: 0.1s;">
+                <h1 class="intro-hero text-gradient-gold animate-fade-up">
                     <span id="time-based-greeting" class="animate-greeting"></span>, <br>I'm Siddharth Kumar
                 </h1>
-                <p class="intro-subtitle animate-fade-up" style="animation-delay: 0.2s;">
+                <p class="intro-subtitle animate-fade-up">
                     Welcome to my dynamic portfolio. Scroll down to explore my core areas of expertise.
                 </p>
             </section>
 
             <div class="main-cards-grid">
-                <div class="main-card card-cinematic animate-slide-up" data-view="projects" tabindex="0" role="button"
+                <div class="main-card card-cinematic entrance-stagger" data-view="projects" tabindex="0" role="button"
                     style="animation-delay: 0.3s;">
+                    <div class="glow-sweep-container">
+                        <div class="glow-sweep"></div>
+                    </div>
                     <span class="main-card-icon">💻</span>
                     <h3 class="main-card-title">Projects</h3>
                     <p class="main-card-desc">Showcasing my full-stack and AI applications.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="tools" tabindex="0" role="button"
+                <div class="main-card card-cinematic entrance-stagger" data-view="tools" tabindex="0" role="button"
                     style="animation-delay: 0.4s;">
+                    <div class="glow-sweep-container">
+                        <div class="glow-sweep"></div>
+                    </div>
                     <span class="main-card-icon">🛠️</span>
                     <h3 class="main-card-title">Tech Stack</h3>
                     <p class="main-card-desc">The languages, frameworks, and tools I master.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="experience" tabindex="0" role="button"
+                <div class="main-card card-cinematic entrance-stagger" data-view="experience" tabindex="0" role="button"
                     style="animation-delay: 0.5s;">
+                    <div class="glow-sweep-container">
+                        <div class="glow-sweep"></div>
+                    </div>
                     <span class="main-card-icon">💼</span>
                     <h3 class="main-card-title">Experience</h3>
                     <p class="main-card-desc">My professional and academic journey.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="certifications" tabindex="0"
+                <div class="main-card card-cinematic entrance-stagger" data-view="certifications" tabindex="0"
                     role="button" style="animation-delay: 0.6s;">
+                    <div class="glow-sweep-container">
+                        <div class="glow-sweep"></div>
+                    </div>
                     <span class="main-card-icon">🏅</span>
                     <h3 class="main-card-title">Certifications</h3>
                     <p class="main-card-desc">Documented skills and industry simulations.</p>
@@ -1260,7 +1446,7 @@
             </div>
         </div>
 
-        <div id="about-view" class="view">
+        <div id="about-view" class="view reveal">
             <div class="section-header">
                 <h2 class="section-title"><span class="text-gradient-gold">About Me</span></h2>
                 <p class="section-subtitle">Get to know me better</p>
@@ -1268,44 +1454,44 @@
             <div class="about-content" id="about-content"></div>
         </div>
 
-        <div id="projects-view" class="view">
-            <div class="section-header">
+        <div id="projects-view" class="view reveal">
+            <div class="section-header reveal">
                 <h2 class="section-title"><span class="text-gradient-gold">Projects</span></h2>
                 <p class="section-subtitle">A collection of my recent work in development and AI.</p>
             </div>
             <div class="projects-grid" id="projects-grid"></div>
         </div>
 
-        <div id="project-detail-view" class="view">
-            <button class="back-btn" id="back-to-projects">← Back to All Projects</button>
+        <div id="project-detail-view" class="view reveal">
+            <button class="back-btn reveal" id="back-to-projects">← Back to All Projects</button>
             <div id="project-detail-content"></div>
         </div>
 
-        <div id="tools-view" class="view">
-            <div class="section-header">
+        <div id="tools-view" class="view reveal">
+            <div class="section-header reveal">
                 <h2 class="section-title"><span class="text-gradient-gold">Tech Stack</span></h2>
                 <p class="section-subtitle">My core technical competencies.</p>
             </div>
             <div class="tools-grid" id="tools-grid"></div>
         </div>
 
-        <div id="experience-view" class="view">
-            <div class="section-header">
+        <div id="experience-view" class="view reveal">
+            <div class="section-header reveal">
                 <h2 class="section-title"><span class="text-gradient-gold">Experience</span></h2>
                 <p class="section-subtitle">My professional journey</p>
             </div>
             <div class="timeline" id="experience-timeline"></div>
         </div>
 
-        <div id="certifications-view" class="view">
-            <div class="section-header">
+        <div id="certifications-view" class="view reveal">
+            <div class="section-header reveal">
                 <h2 class="section-title"><span class="text-gradient-gold">Certifications & Simulations</span></h2>
                 <p class="section-subtitle">Industry simulations and validated expertise.</p>
             </div>
 
-            <div class="simulations-section" id="simulations-section"></div>
+            <div class="simulations-section reveal" id="simulations-section"></div>
 
-            <div class="certs-grid" id="certs-grid"></div>
+            <div class="certs-grid reveal" id="certs-grid"></div>
         </div>
 
     </div>
@@ -1682,30 +1868,28 @@
         function switchView(viewName) {
             if (viewName === currentView) return;
 
-            // Fade out current view
-            const currentViewEl = qs('.view.active');
-            if (currentViewEl) {
-                currentViewEl.style.opacity = '0';
-                currentViewEl.classList.remove('active');
+            const oldView = qs('.view.active');
+            const newView = qs(`#${viewName}-view`);
+
+            if (oldView) {
+                oldView.classList.add('sliding-out');
+                setTimeout(() => {
+                    oldView.classList.remove('active', 'sliding-out');
+                }, 600);
             }
 
             qsa('.nav-link').forEach(link => link.classList.remove('active'));
-
-            const targetView = qs(`#${viewName}-view`);
-            if (targetView) {
-                targetView.classList.add('active');
-                // Small delay to allow display:block to apply before opacity transition
-                setTimeout(() => {
-                    targetView.style.opacity = '1';
-                }, 10);
-            }
-
             const activeLink = qs(`.nav-link[data-view="${viewName}"]`);
             if (activeLink) activeLink.classList.add('active');
 
-            currentView = viewName;
+            if (newView) {
+                setTimeout(() => {
+                    newView.classList.add('active');
+                    currentView = viewName;
+                }, 100);
+            }
 
-            if (viewName !== 'project-detail-view') {
+            if (viewName !== 'project-detail') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
@@ -1937,7 +2121,70 @@
             return "Good Evening";
         }
 
+        function initSplashEffects() {
+            const term = qs('#splash-terminal');
+            const logs = [
+                "> INITIALizing core_modules...",
+                "> FETCHing Experience_Data...",
+                "> LOADing Project_Archive...",
+                "> DECRYPting Skill_Stack...",
+                "> CONNECTing to SID_NET...",
+                "> AUTHenticating Bio_Metric...",
+                "> SYSTEM_READY: true"
+            ];
+            let i = 0;
+            const logInterval = setInterval(() => {
+                if (term && i < logs.length) {
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    line.textContent = logs[i++];
+                    term.appendChild(line);
+                    if (term.childNodes.length > 8) term.removeChild(term.firstChild);
+                } else {
+                    clearInterval(logInterval);
+                }
+            }, 300);
+
+            const parts = qs('#splash-particles');
+            for (let j = 0; j < 20; j++) {
+                const p = document.createElement('div');
+                p.className = 'binary-particle';
+                p.textContent = Math.random() > 0.5 ? '1' : '0';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = Math.random() * 100 + 'vh';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.opacity = Math.random() * 0.5;
+                parts.appendChild(p);
+            }
+        }
+
         function init() {
+            initSplashEffects();
+            // Splash Sequence
+            setTimeout(() => {
+                qs('#splash-loader').style.display = 'none';
+                const greeting = qs('#splash-greeting');
+                if (greeting) {
+                    greeting.style.display = 'block';
+                    greeting.style.animation = 'glow-pulse 1.5s infinite';
+                }
+
+                setTimeout(() => {
+                    if (greeting) greeting.style.display = 'none';
+                    qs('#splash-entry').style.display = 'block';
+
+                    setTimeout(() => {
+                        const splash = qs('#splash-screen');
+                        if (splash) {
+                            splash.style.opacity = '0';
+                            splash.style.transform = 'scale(1.2)';
+                            document.body.classList.add('reveal-active');
+                            setTimeout(() => splash.remove(), 800);
+                        }
+                    }, 1200);
+                }, 1800);
+            }, 1000);
+
             qs('#current-year').textContent = new Date().getFullYear();
 
             const greetingElement = qs('#time-based-greeting');
@@ -2017,6 +2264,38 @@
                     });
                 });
             }
+
+            // Scroll Reveal Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            qsa('.reveal').forEach(el => revealObserver.observe(el));
+
+            // Magnetic Button Effect
+            qsa('.card-cinematic, .btn-primary').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = `translate(0, 0) scale(1)`;
+                });
+            });
         }
 
         function saveToStorage() {
