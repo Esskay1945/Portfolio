@@ -19,41 +19,42 @@
         }
 
         :root {
-            /* VELVET ROSE THEME (#E8C4BC, #B73E4D, #62555C) */
-            --background: 328 7% 36%;
-            /* #62555C Taupe */
-            --foreground: 11 45% 82%;
-            /* #E8C4BC Peach */
+            /* BIOLUMINESCENT OCEAN THEME */
+            --background: 200 50% 10%;
+            /* Deep Ocean Blue */
+            --foreground: 200 20% 90%;
+            /* Pearl White */
 
-            --card: 328 10% 41%;
-            /* Slightly lighter Taupe */
-            --card-foreground: 11 45% 90%;
+            --card: 200 50% 13%;
+            /* Deep Blue */
+            --card-foreground: 200 20% 95%;
 
-            --primary: 353 49% 48%;
-            /* #B73E4D Rose Red */
-            --primary-foreground: 11 45% 95%;
+            --primary: 180 100% 50%;
+            /* Electric Cyan */
+            --primary-foreground: 200 50% 10%;
 
-            --muted: 328 10% 30%;
-            --muted-foreground: 11 30% 70%;
+            --muted: 200 40% 25%;
+            --muted-foreground: 200 20% 70%;
 
-            --accent: 353 49% 48%;
-            /* Rose */
-            --accent-light: 353 60% 60%;
+            --accent: 190 100% 60%;
+            /* Bright Aqua */
+            --accent-light: 180 100% 75%;
 
-            --border: 328 10% 50%;
+            --border: 200 50% 25%;
+            /* Deep Blue Border */
 
-            --hero-grad: radial-gradient(circle at 50% 0%, rgba(232, 196, 188, 0.1) 0%, rgba(183, 62, 77, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
-            --card-accent-grad: linear-gradient(145deg, rgba(98, 85, 92, 0.9) 0%, rgba(80, 70, 75, 0.95) 100%);
+            --hero-grad: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.15) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+            --card-accent-grad: linear-gradient(145deg, rgba(10, 40, 60, 0.9) 0%, rgba(5, 20, 30, 0.95) 100%);
 
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 20px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 10px 20px -3px rgba(0, 20, 40, 0.4), 0 4px 6px -2px rgba(0, 20, 40, 0.3);
+            --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
 
-            /* Rose Highlights */
-            --gold: 353 49% 48%;
-            /* Rose */
-            --gold-light: 11 45% 82%;
-            /* Peach */
+            /* Ocean Highlights */
+            --gold: 180 100% 50%;
+            /* Cyan */
+            --gold-light: 190 100% 70%;
+            /* Aqua */
         }
 
         html,
@@ -80,49 +81,50 @@
         .hero-bg {
             background-color: hsl(var(--background));
             background-image:
-                radial-gradient(circle at 15% 50%, rgba(244, 211, 94, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(244, 211, 94, 0.05) 0%, transparent 25%);
+                radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
             background-size: 100% 100%, 120% 120%;
             animation: float 15s ease-in-out infinite alternate;
             min-height: 100vh;
         }
 
         .card-cinematic {
-            background: rgba(13, 59, 102, 0.6);
-            /* More transparent */
-            border: 1px solid rgba(250, 240, 202, 0.1);
+            background: rgba(10, 40, 60, 0.6);
+            /* Deep Blue Glass */
+            border: 1px solid rgba(34, 211, 238, 0.15);
+            /* Subtle Cyan Border */
             border-radius: 24px;
             backdrop-filter: blur(16px);
-            /* Stronger blur */
             box-shadow: var(--shadow-md);
             will-change: transform;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card-cinematic:hover {
-            border-color: rgba(244, 211, 94, 0.4);
-            box-shadow: 0 0 30px rgba(244, 211, 94, 0.15);
+            border-color: rgba(34, 211, 238, 0.6);
+            /* Bright Cyan Glow */
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.05);
         }
 
         .text-gradient-gold {
-            background: linear-gradient(90deg, #E8C4BC 0%, #B73E4D 50%, #E8C4BC 100%);
+            background: linear-gradient(90deg, #67e8f9 0%, #a855f7 50%, #67e8f9 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            text-shadow: 0 0 25px rgba(183, 62, 77, 0.3);
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
             animation: shimmer 6s linear infinite;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #B73E4D 0%, #8a2e3a 100%);
-            color: #E8C4BC;
-            border: 1px solid rgba(232, 196, 188, 0.3);
+            background: linear-gradient(135deg, #0891b2 0%, #155e75 100%);
+            color: #E0F7FA;
+            border: 1px solid rgba(34, 211, 238, 0.4);
             border-radius: 16px;
             padding: 0.75rem 1.5rem;
             font-weight: 700;
-            box-shadow: 0 4px 20px rgba(183, 62, 77, 0.3);
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             font-family: 'Inter', sans-serif;
@@ -331,7 +333,7 @@
 
         @media (max-width: 768px) {
             .hero-section {
-                padding: 5rem 0 2rem;
+                padding: 2.5rem 0 2rem;
             }
         }
 
@@ -512,15 +514,17 @@
                 left: -100%;
                 width: 250px;
                 height: 100vh;
-                background-color: hsl(var(--card));
+                background-color: rgba(10, 40, 60, 0.85);
+                backdrop-filter: blur(16px);
                 flex-direction: column;
                 justify-content: flex-start;
+                align-items: center;
                 padding-top: 5rem;
                 gap: 2rem;
                 transition: left 0.3s ease-in-out;
                 z-index: 999;
                 box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
-                border-right: 1px solid hsl(var(--border));
+                border-right: 1px solid rgba(34, 211, 238, 0.2);
             }
 
             .nav-links.active {
@@ -542,7 +546,7 @@
         }
 
         .nav-link:hover {
-            color: #3b82f6;
+            color: hsl(var(--primary));
         }
 
         .nav-link.active::after {
@@ -626,13 +630,14 @@
         }
 
         .skill-item {
-            background: rgba(244, 211, 94, 0.1);
-            border: 1px solid rgba(244, 211, 94, 0.3);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
             padding: 0.75rem 1rem;
             border-radius: 10px;
             text-align: center;
             font-weight: 600;
             color: hsl(var(--gold));
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.1);
         }
 
         /* MOBILE FIX FOR OVERLAP */
