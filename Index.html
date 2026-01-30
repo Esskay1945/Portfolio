@@ -19,43 +19,41 @@
         }
 
         :root {
-            /* DEEP NAVY & GOLD THEME (Neon, Sunshine, Bliss) */
-            --background: 209 88% 23%;
-            /* #0D3B66 Neon */
-            --foreground: 47 78% 89%;
-            /* #FAF0CA Sunshine */
+            /* VELVET ROSE THEME (#E8C4BC, #B73E4D, #62555C) */
+            --background: 328 7% 36%;
+            /* #62555C Taupe */
+            --foreground: 11 45% 82%;
+            /* #E8C4BC Peach */
 
-            --card: 209 80% 27%;
-            /* Slightly Lighter Navy */
-            --card-foreground: 47 78% 95%;
+            --card: 328 10% 41%;
+            /* Slightly lighter Taupe */
+            --card-foreground: 11 45% 90%;
 
-            --primary: 47 86% 66%;
-            /* #F4D35E Bliss (Gold) */
-            --primary-foreground: 209 88% 23%;
+            --primary: 353 49% 48%;
+            /* #B73E4D Rose Red */
+            --primary-foreground: 11 45% 95%;
 
-            --muted: 209 60% 35%;
-            --muted-foreground: 47 50% 80%;
+            --muted: 328 10% 30%;
+            --muted-foreground: 11 30% 70%;
 
-            --accent: 47 86% 66%;
-            /* Gold */
-            --accent-light: 47 90% 80%;
-            /* Light Gold */
+            --accent: 353 49% 48%;
+            /* Rose */
+            --accent-light: 353 60% 60%;
 
-            --border: 209 60% 40%;
-            /* Navy Border */
+            --border: 328 10% 50%;
 
-            --hero-grad: radial-gradient(circle at 50% 0%, rgba(244, 211, 94, 0.15) 0%, rgba(250, 240, 202, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
-            --card-accent-grad: linear-gradient(145deg, rgba(20, 70, 120, 0.9) 0%, rgba(13, 59, 102, 0.95) 100%);
+            --hero-grad: radial-gradient(circle at 50% 0%, rgba(232, 196, 188, 0.1) 0%, rgba(183, 62, 77, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+            --card-accent-grad: linear-gradient(145deg, rgba(98, 85, 92, 0.9) 0%, rgba(80, 70, 75, 0.95) 100%);
 
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 10px 20px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 20px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.25);
 
-            /* Gold Highlights */
-            --gold: 47 86% 66%;
-            /* #F4D35E */
-            --gold-light: 47 78% 89%;
-            /* #FAF0CA */
+            /* Rose Highlights */
+            --gold: 353 49% 48%;
+            /* Rose */
+            --gold-light: 11 45% 82%;
+            /* Peach */
         }
 
         html,
@@ -82,38 +80,49 @@
         .hero-bg {
             background-color: hsl(var(--background));
             background-image:
-                radial-gradient(at 0% 0%, rgba(200, 200, 200, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(150, 150, 150, 0.1) 0px, transparent 50%);
+                radial-gradient(circle at 15% 50%, rgba(244, 211, 94, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(244, 211, 94, 0.05) 0%, transparent 25%);
+            background-size: 100% 100%, 120% 120%;
+            animation: float 15s ease-in-out infinite alternate;
             min-height: 100vh;
         }
 
         .card-cinematic {
-            background: hsl(var(--card) / 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background: rgba(13, 59, 102, 0.6);
+            /* More transparent */
+            border: 1px solid rgba(250, 240, 202, 0.1);
             border-radius: 24px;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            /* Stronger blur */
             box-shadow: var(--shadow-md);
             will-change: transform;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-cinematic:hover {
+            border-color: rgba(244, 211, 94, 0.4);
+            box-shadow: 0 0 30px rgba(244, 211, 94, 0.15);
         }
 
         .text-gradient-gold {
-            background: linear-gradient(135deg, #FAF0CA 0%, #F4D35E 50%, #FFD700 100%);
+            background: linear-gradient(90deg, #E8C4BC 0%, #B73E4D 50%, #E8C4BC 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            text-shadow: 0 0 25px rgba(244, 211, 94, 0.3);
+            text-shadow: 0 0 25px rgba(183, 62, 77, 0.3);
+            animation: shimmer 6s linear infinite;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #F4D35E 0%, #d4a017 100%);
-            color: #0D3B66;
-            border: 1px solid rgba(250, 240, 202, 0.4);
+            background: linear-gradient(135deg, #B73E4D 0%, #8a2e3a 100%);
+            color: #E8C4BC;
+            border: 1px solid rgba(232, 196, 188, 0.3);
             border-radius: 16px;
             padding: 0.75rem 1.5rem;
             font-weight: 700;
-            box-shadow: 0 4px 20px rgba(244, 211, 94, 0.4);
+            box-shadow: 0 4px 20px rgba(183, 62, 77, 0.3);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             font-family: 'Inter', sans-serif;
@@ -259,6 +268,30 @@
 
         .animate-scale-in {
             animation: scale-in .6s ease-out forwards;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                background-position: 0% 0%, 100% 0%;
+            }
+
+            50% {
+                background-position: 5% 5%, 95% 5%;
+            }
+
+            100% {
+                background-position: 0% 0%, 100% 0%;
+            }
         }
 
         /* VIEWS */
@@ -448,22 +481,53 @@
             flex-wrap: wrap;
         }
 
+        /* MOBILE SIDEBAR STYLES */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: hsl(var(--foreground));
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1.25rem;
-                padding-bottom: 0.5rem;
+            .mobile-menu-btn {
+                display: block;
             }
 
             .nav-links {
-                justify-content: center;
-                gap: 1.5rem;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: hsl(var(--card));
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 5rem;
+                gap: 2rem;
+                transition: left 0.3s ease-in-out;
+                z-index: 999;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+                border-right: 1px solid hsl(var(--border));
             }
 
-            .logo {
-                font-size: 1.75rem;
+            .nav-links.active {
+                left: 0;
             }
+
+            /* Add overlay support via JS later if needed, or simple direct interaction */
         }
 
         .nav-link {
@@ -1132,6 +1196,12 @@
     <header id="main-header">
         <div class="container">
             <nav>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="logo">Siddharth K.</div>
                 <div class="nav-links">
                     <a href="#" class="nav-link active" data-view="home">Home</a>
@@ -1910,6 +1980,38 @@
             });
 
             switchView('home');
+
+            // Mobile Menu Logic
+            const mobileBtn = qs('#mobile-menu-btn');
+            const navLinks = qs('.nav-links');
+
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('active');
+                    mobileBtn.classList.toggle('active'); // Optional: animating hamburger to X
+                });
+
+                // Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                        if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                            navLinks.classList.remove('active');
+                            mobileBtn.classList.remove('active');
+                        }
+                    }
+                });
+
+                // Close when clicking a link
+                qsa('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('active');
+                            mobileBtn.classList.remove('active');
+                        }
+                    });
+                });
+            }
         }
 
         function saveToStorage() {
