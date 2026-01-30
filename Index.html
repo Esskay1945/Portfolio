@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siddharth Kumar | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --background: 0 0% 4%;
-            --foreground: 40 15% 90%;
-            --card: 0 0% 7%;
-            --card-foreground: 40 15% 90%;
-            --primary: 43 74% 49%;
-            --primary-foreground: 0 0% 4%;
-            --muted: 0 0% 15%;
-            --muted-foreground: 0 0% 55%;
-            --gold: 43 74% 49%;
-            --gold-light: 45 85% 58%;
-            --charcoal: 215 13% 8%;
-            --charcoal-light: 220 10% 12%;
-            --border: 0 0% 11%;
-            --smoke: 0 0% 12%;
-            --hero-grad: linear-gradient(135deg, rgba(245,158,11,0.18) 0%, rgba(11,18,32,0.0) 35%, rgba(255,184,77,0.06) 100%);
-            --card-accent-grad: linear-gradient(120deg, rgba(15,23,42,0.6) 0%, rgba(11,18,32,0.85) 60%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        html, body { height: 100%; }
-        
+        :root {
+            /* PLATINUM & ELECTRIC THEME */
+            --background: 218 22% 18%;
+            /* Rich Slate */
+            --foreground: 210 20% 90%;
+            /* Platinum White */
+
+            --card: 218 22% 24%;
+            /* Lighter Slate */
+            --card-foreground: 210 20% 95%;
+
+            --primary: 180 100% 70%;
+            /* Electric Cyan */
+            --primary-foreground: 218 22% 18%;
+
+            --muted: 215 20% 30%;
+            --muted-foreground: 215 15% 75%;
+            /* Light Slate Gray */
+
+            --accent: 180 100% 60%;
+            /* Vivid Cyan */
+            --accent-light: 180 100% 80%;
+            /* Bright Electric */
+
+            --border: 218 22% 35%;
+            /* Visible Slate Border */
+
+            --hero-grad: radial-gradient(circle at 50% 0%, rgba(6, 212, 212, 0.2) 0%, rgba(200, 200, 255, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+            --card-accent-grad: linear-gradient(145deg, rgba(40, 50, 70, 0.9) 0%, rgba(30, 40, 60, 0.95) 100%);
+
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 20px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+
+            /* Platinum Highlights */
+            --gold: 180 100% 65%;
+            /* Electric Cyan */
+            --gold-light: 180 100% 85%;
+            /* White Cyan */
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             background: hsl(var(--background));
             color: hsl(var(--foreground));
@@ -48,90 +80,187 @@
         }
 
         /* UTILITIES */
-        .hero-bg { background-image: var(--hero-grad); }
-        
+        .hero-bg {
+            background-color: hsl(var(--background));
+            background-image:
+                radial-gradient(at 0% 0%, rgba(200, 200, 200, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(150, 150, 150, 0.1) 0px, transparent 50%);
+            min-height: 100vh;
+        }
+
         .card-cinematic {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 20px;
-            backdrop-filter: blur(6px);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-            will-change: transform; 
+            background: hsl(var(--card) / 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-md);
+            will-change: transform;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .text-gradient-gold {
-            background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-light)));
+            background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 50%, #22d3ee 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
-            color: hsl(var(--primary-foreground));
-            border: none;
-            border-radius: 14px;
-            padding: 0.65rem 1.25rem;
+            background: linear-gradient(135deg, #0891b2 0%, #164e63 100%);
+            color: white;
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            border-radius: 16px;
+            padding: 0.75rem 1.5rem;
             font-weight: 600;
-            box-shadow: 0 6px 25px rgba(15,23,42,0.35);
-            transition: transform .18s ease, filter .18s ease;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             font-family: 'Inter', sans-serif;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px) scale(1.01);
-            filter: brightness(1.04);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
             color: hsl(var(--foreground));
-            border-radius: 14px;
-            padding: 0.65rem 1.25rem;
+            border-radius: 16px;
+            padding: 0.75rem 1.5rem;
             font-weight: 600;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
-            transition: all 0.18s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-secondary:hover {
-            border-color: hsl(var(--gold));
-            color: hsl(var(--gold));
+            border-color: #C0C0C0;
+            color: #C0C0C0;
+            box-shadow: var(--shadow-sm);
         }
 
         /* ANIMATIONS */
         @keyframes fade-up {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fade-in {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-greeting {
+            display: inline-block;
+            animation: slideInRight 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeInView 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInView {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slide-up {
-            0% { opacity: 0; transform: translateY(60px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 20px hsl(var(--gold)/0.3); }
-            50% { box-shadow: 0 0 40px hsl(var(--gold)/0.5); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px hsl(var(--gold)/0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px hsl(var(--gold)/0.5);
+            }
         }
 
         @keyframes scale-in {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        .animate-fade-up { animation: fade-up .8s ease-out forwards; }
-        .animate-fade-in { animation: fade-in .6s ease-out forwards; }
-        .animate-slide-up { animation: slide-up .7s cubic-bezier(.16,1,.3,1) forwards; }
-        .animate-glow { animation: glow-pulse 2s ease-in-out infinite; }
-        .animate-scale-in { animation: scale-in .6s ease-out forwards; }
+        .animate-fade-up {
+            animation: fade-up .8s ease-out forwards;
+        }
+
+        .animate-fade-in {
+            animation: fade-in .6s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            animation: slide-up .7s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        .animate-glow {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        .animate-scale-in {
+            animation: scale-in .6s ease-out forwards;
+        }
 
         /* VIEWS */
         #main-content {
@@ -139,26 +268,50 @@
             visibility: visible;
         }
 
-        .view { 
+        .view {
             display: none;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .view.active { 
+
+        .view.active {
             display: block;
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* NEW DASHBOARD HERO */
         .hero-section {
-            padding: 6rem 0 3rem; 
+            padding: 6rem 0 3rem;
             text-align: center;
         }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 5rem 0 2rem;
+            }
+        }
+
         .intro-hero {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(38px, 8vw, 72px);
+            font-size: clamp(32px, 8vw, 72px);
             font-weight: 700;
             text-align: center;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
+
         .intro-subtitle {
             font-size: clamp(16px, 3vw, 20px);
             color: hsl(var(--muted-foreground));
@@ -167,21 +320,42 @@
             margin: 0 auto;
         }
 
+        #time-based-greeting {
+            /* Inherit global theme styles for consistency, just add extra shine */
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #808080 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
+        }
+
         /* MAIN CARDS */
         .main-cards-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            padding: 3rem 0 6rem; 
+            padding: 3rem 0 6rem;
             align-content: center;
         }
 
         @media (min-width: 640px) {
-            .main-cards-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (min-width: 1024px) {
-            .main-cards-grid { grid-template-columns: repeat(4, 1fr); }
+            .main-cards-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-cards-grid {
+                padding: 2rem 0 4rem;
+                gap: 1.25rem;
+            }
         }
 
         .main-card {
@@ -190,7 +364,13 @@
             cursor: pointer;
             transition: transform 0.18s ease, box-shadow 0.18s ease;
             overflow: hidden;
-            will-change: transform; 
+            will-change: transform;
+        }
+
+        @media (max-width: 640px) {
+            .main-card {
+                padding: 1.5rem;
+            }
         }
 
         .main-card::before {
@@ -200,30 +380,36 @@
             top: 0;
             height: 100%;
             width: 4px;
-            background: linear-gradient(180deg, hsl(var(--gold)), hsl(var(--gold-light)));
+            background: linear-gradient(180deg, #67e8f9, #22d3ee, #0e7490);
+            border-radius: 24px 0 0 24px;
         }
 
         .main-card:hover {
             transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
         }
 
         .main-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: hsl(var(--gold-light));
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 8px rgba(192, 192, 192, 0.3));
         }
 
         .main-card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.65rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #e0e0e0;
+            /* Removed gradient to keep it clean silver */
+            background: none;
+            -webkit-text-fill-color: initial;
         }
 
         .main-card-desc {
             color: hsl(var(--muted-foreground));
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* HEADER & NAVIGATION */
@@ -236,11 +422,12 @@
             padding: 1.25rem 0;
             transition: background-color 0.3s ease;
         }
-        
+
         header.scrolled {
             background-color: hsl(var(--background) / 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid hsl(var(--border));
+            box-shadow: var(--shadow-sm);
         }
 
         nav {
@@ -259,6 +446,18 @@
         .nav-links {
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
         }
 
         .nav-link {
@@ -273,7 +472,7 @@
         }
 
         .nav-link:hover {
-            color: hsl(var(--gold));
+            color: #3b82f6;
         }
 
         .nav-link.active::after {
@@ -283,220 +482,10 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: hsl(var(--gold));
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
         }
 
-        .admin-btn {
-            background: hsl(var(--gold));
-            color: hsl(var(--primary-foreground));
-            border: none;
-            border-radius: 10px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            box-shadow: 0 6px 30px rgba(245,158,11,0.4);
-            z-index: 999;
-            transition: all 0.3s ease;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: block; 
-        }
 
-        .admin-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 40px rgba(245,158,11,0.6);
-        }
-
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .admin-modal.active {
-            display: flex !important;
-            align-items: flex-start;
-            justify-content: center;
-        }
-        
-        .admin-content {
-            background: hsl(var(--card));
-            border: 1px solid hsl(var(--border));
-            border-radius: 20px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 900px;
-            margin-top: 5vh;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-            position: relative;
-        }
-
-        .admin-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .admin-content .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: hsl(var(--muted-foreground));
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .admin-content .close-btn:hover {
-            color: hsl(var(--gold));
-        }
-
-        .admin-form-group {
-            margin-bottom: 1rem;
-        }
-
-        .admin-form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: hsl(var(--gold));
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            background: hsl(var(--charcoal-light));
-            border: 1px solid hsl(var(--border));
-            border-radius: 10px;
-            color: hsl(var(--foreground));
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: hsl(var(--gold));
-            background: rgba(255,255,255,0.05);
-        }
-
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .tag-input-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag-input-item {
-            background: rgba(245,158,11,0.15);
-            border: 1px solid rgba(245,158,11,0.3);
-            color: hsl(var(--gold-light));
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tag-remove {
-            background: none;
-            border: none;
-            color: currentColor;
-            cursor: pointer;
-            font-size: 0.9rem;
-            line-height: 1;
-        }
-
-        .admin-actions button {
-            margin-left: 0.5rem;
-        }
-
-        .admin-item {
-            background: hsl(var(--card));
-            border: 1px solid hsl(var(--border));
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-item h4 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .admin-item p {
-            margin: 0.25rem 0 0;
-            font-size: 0.85rem;
-            color: hsl(var(--muted-foreground));
-        }
-
-        .btn-edit {
-            background: hsl(var(--gold));
-            color: hsl(var(--primary-foreground));
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .btn-delete {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .admin-section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            border: 1px solid hsl(var(--border));
-            border-radius: 15px;
-        }
-
-        .admin-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid hsl(var(--border));
-            padding-bottom: 0.5rem;
-        }
-        
-        .admin-login {
-            max-width: 400px;
-            margin: 10vh auto 0;
-            padding: 2rem;
-            text-align: center;
-        }
 
         /* GENERAL SECTION STYLES */
         .section-header {
@@ -567,8 +556,8 @@
         }
 
         .skill-item {
-            background: rgba(245,158,11,0.1);
-            border: 1px solid rgba(245,158,11,0.2);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
             padding: 0.75rem 1rem;
             border-radius: 10px;
             text-align: center;
@@ -583,8 +572,8 @@
         }
 
         .contact-link {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.75rem 1.25rem;
             border-radius: 10px;
             color: hsl(var(--foreground));
@@ -608,7 +597,7 @@
         .simulation-card {
             background: hsl(var(--card));
             border: 1px solid hsl(var(--border));
-            border-left: 4px solid hsl(var(--gold));
+            border-left: 4px solid #C0C0C0;
             border-radius: 16px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -617,14 +606,17 @@
 
         .simulation-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 30px rgba(192, 192, 192, 0.2);
         }
 
         .simulation-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-weight: 600;
-            color: hsl(var(--gold-light));
+            background: linear-gradient(135deg, #e0e0e0, #a0a0a0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
 
@@ -649,11 +641,15 @@
         }
 
         @media (min-width: 640px) {
-            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (min-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(3, 1fr); }
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .project-card {
@@ -664,19 +660,23 @@
             border-radius: 16px;
             padding: 1.25rem;
             border: 1px solid hsl(var(--border));
-            will-change: transform; 
+            will-change: transform;
         }
-        
+
         .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(192, 192, 192, 0.15);
         }
 
         .project-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #e0e0e0, #a0a0a0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .project-desc {
@@ -685,6 +685,7 @@
             margin-bottom: 1rem;
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -697,11 +698,12 @@
         }
 
         .tech-tag {
-            background: rgba(245,158,11,0.1);
-            color: hsl(var(--gold-light));
-            padding: 0.3rem 0.6rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
+            background: linear-gradient(135deg, rgba(200, 200, 200, 0.1), rgba(150, 150, 150, 0.1));
+            color: #d0d0d0;
+            border: 1px solid rgba(200, 200, 200, 0.2);
+            padding: 0.4rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
@@ -751,7 +753,7 @@
             color: hsl(var(--muted-foreground));
             margin-bottom: 2rem;
         }
-        
+
         .detail-section {
             padding: 1.5rem 0;
             border-top: 1px dashed hsl(var(--border));
@@ -775,7 +777,9 @@
         }
 
         @media (min-width: 768px) {
-            .features-list { grid-template-columns: repeat(2, 1fr); }
+            .features-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .feature-item {
@@ -810,9 +814,9 @@
             overflow: hidden;
             transition: box-shadow 0.3s ease;
         }
-        
+
         .tool-category:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .tool-category::before {
@@ -846,8 +850,8 @@
         }
 
         .tool-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 0.5rem 1rem;
             border-radius: 12px;
             font-size: 0.9rem;
@@ -885,7 +889,7 @@
             padding-right: 30px;
             box-sizing: border-box;
             margin-bottom: 2rem;
-            will-change: transform; 
+            will-change: transform;
         }
 
         .timeline-item:nth-child(odd) {
@@ -921,13 +925,13 @@
             padding: 1.5rem;
             border-radius: 12px;
             position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .timeline-item:hover .timeline-content {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         .timeline-content h4 {
@@ -1004,11 +1008,15 @@
         }
 
         @media (min-width: 640px) {
-            .certs-grid { grid-template-columns: repeat(2, 1fr); }
+            .certs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (min-width: 1024px) {
-            .certs-grid { grid-template-columns: repeat(3, 1fr); }
+            .certs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .cert-card {
@@ -1022,7 +1030,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            will-change: transform; 
+            will-change: transform;
         }
 
         .cert-card::before {
@@ -1043,7 +1051,7 @@
 
         .cert-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
         .cert-card-title {
@@ -1104,8 +1112,9 @@
         }
     </style>
 </head>
+
 <body class="hero-bg">
-    
+
     <header id="main-header">
         <div class="container">
             <nav>
@@ -1122,35 +1131,39 @@
         </div>
     </header>
 
-    <div id="main-content" class="container"> 
+    <div id="main-content" class="container">
 
         <div id="home-view" class="view active">
             <section class="hero-section" id="dashboard-hero">
                 <h1 class="intro-hero text-gradient-gold animate-fade-up" style="animation-delay: 0.1s;">
-                    <span id="time-based-greeting"></span>, <br>I'm Siddharth Kumar
+                    <span id="time-based-greeting" class="animate-greeting"></span>, <br>I'm Siddharth Kumar
                 </h1>
                 <p class="intro-subtitle animate-fade-up" style="animation-delay: 0.2s;">
                     Welcome to my dynamic portfolio. Scroll down to explore my core areas of expertise.
                 </p>
             </section>
-            
+
             <div class="main-cards-grid">
-                <div class="main-card card-cinematic animate-slide-up" data-view="projects" tabindex="0" role="button" style="animation-delay: 0.3s;">
+                <div class="main-card card-cinematic animate-slide-up" data-view="projects" tabindex="0" role="button"
+                    style="animation-delay: 0.3s;">
                     <span class="main-card-icon">💻</span>
                     <h3 class="main-card-title">Projects</h3>
                     <p class="main-card-desc">Showcasing my full-stack and AI applications.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="tools" tabindex="0" role="button" style="animation-delay: 0.4s;">
+                <div class="main-card card-cinematic animate-slide-up" data-view="tools" tabindex="0" role="button"
+                    style="animation-delay: 0.4s;">
                     <span class="main-card-icon">🛠️</span>
                     <h3 class="main-card-title">Tech Stack</h3>
                     <p class="main-card-desc">The languages, frameworks, and tools I master.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="experience" tabindex="0" role="button" style="animation-delay: 0.5s;">
+                <div class="main-card card-cinematic animate-slide-up" data-view="experience" tabindex="0" role="button"
+                    style="animation-delay: 0.5s;">
                     <span class="main-card-icon">💼</span>
                     <h3 class="main-card-title">Experience</h3>
                     <p class="main-card-desc">My professional and academic journey.</p>
                 </div>
-                <div class="main-card card-cinematic animate-slide-up" data-view="certifications" tabindex="0" role="button" style="animation-delay: 0.6s;">
+                <div class="main-card card-cinematic animate-slide-up" data-view="certifications" tabindex="0"
+                    role="button" style="animation-delay: 0.6s;">
                     <span class="main-card-icon">🏅</span>
                     <h3 class="main-card-title">Certifications</h3>
                     <p class="main-card-desc">Documented skills and industry simulations.</p>
@@ -1178,7 +1191,7 @@
             <button class="back-btn" id="back-to-projects">← Back to All Projects</button>
             <div id="project-detail-content"></div>
         </div>
-        
+
         <div id="tools-view" class="view">
             <div class="section-header">
                 <h2 class="section-title"><span class="text-gradient-gold">Tech Stack</span></h2>
@@ -1200,9 +1213,9 @@
                 <h2 class="section-title"><span class="text-gradient-gold">Certifications & Simulations</span></h2>
                 <p class="section-subtitle">Industry simulations and validated expertise.</p>
             </div>
-            
+
             <div class="simulations-section" id="simulations-section"></div>
-            
+
             <div class="certs-grid" id="certs-grid"></div>
         </div>
 
@@ -1211,212 +1224,30 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://github.com/Esskay1945" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.43 9.8 8.21 11.38.6.11.82-.26.82-.57 0-.28-.01-1.01-.02-2c-3.33.72-4.04-1.61-4.04-1.61-.54-1.36-1.32-1.72-1.32-1.72-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.77.42-1.3.77-1.6-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.46-2.38 1.22-3.22-.12-.3-.53-1.52.12-3.18 0 0 .99-.32 3.24 1.23.94-.26 1.94-.39 2.94-.39 1 0 2 .13 2.94.39 2.25-1.55 3.24-1.23 3.24-1.23.65 1.66.24 2.88.12 3.18.76.84 1.22 1.91 1.22 3.22 0 4.61-2.81 5.61-5.49 5.92.43.37.82 1.12.82 2.27 0 1.63-.01 2.94-.01 3.34 0 .31.22.68.83.57C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <a href="https://github.com/Esskay1945" class="social-link" target="_blank" rel="noopener noreferrer"
+                    aria-label="GitHub">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.43 9.8 8.21 11.38.6.11.82-.26.82-.57 0-.28-.01-1.01-.02-2c-3.33.72-4.04-1.61-4.04-1.61-.54-1.36-1.32-1.72-1.32-1.72-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.77.42-1.3.77-1.6-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.46-2.38 1.22-3.22-.12-.3-.53-1.52.12-3.18 0 0 .99-.32 3.24 1.23.94-.26 1.94-.39 2.94-.39 1 0 2 .13 2.94.39 2.25-1.55 3.24-1.23 3.24-1.23.65 1.66.24 2.88.12 3.18.76.84 1.22 1.91 1.22 3.22 0 4.61-2.81 5.61-5.49 5.92.43.37.82 1.12.82 2.27 0 1.63-.01 2.94-.01 3.34 0 .31.22.68.83.57C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/siddharth-kumar-3b74482b4/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zM8 19h-3v-11h3v11zM6.5 6.73c-.96 0-1.75-.79-1.75-1.76s.79-1.76 1.75-1.76 1.75.79 1.75 1.76-.79 1.76-1.75 1.76zM20 19h-3v-5.63c0-3.37-4-3.52-4 0v5.63h-3v-11h3v1.76s1.69-2.22 4-2.22c2.82 0 5 2.18 5 6.55v5.91z"/></svg>
+                <a href="https://www.linkedin.com/in/siddharth-kumar-3b74482b4/" class="social-link" target="_blank"
+                    rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zM8 19h-3v-11h3v11zM6.5 6.73c-.96 0-1.75-.79-1.75-1.76s.79-1.76 1.75-1.76 1.75.79 1.75 1.76-.79 1.76-1.75 1.76zM20 19h-3v-5.63c0-3.37-4-3.52-4 0v5.63h-3v-11h3v1.76s1.69-2.22 4-2.22c2.82 0 5 2.18 5 6.55v5.91z" />
+                    </svg>
                 </a>
                 <a href="mailto:23107044@apsit.edu.in" class="social-link" aria-label="Email">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
                 </a>
             </div>
             <p class="footer-text">&copy; <span id="current-year">2023</span> Siddharth Kumar. All rights reserved.</p>
         </div>
     </footer>
-
-    <button class="admin-btn animate-glow" id="open-admin-modal">Admin Mode</button>
-
-    <div class="admin-modal" id="admin-modal">
-        <div class="admin-content admin-login" id="admin-login-content">
-            <button class="close-btn" id="close-login-btn">×</button>
-            <h2>Admin Login</h2>
-            <div class="admin-form-group">
-                <label for="admin-email">Email</label>
-                <input type="email" id="admin-email" class="form-input" placeholder="Enter admin email">
-            </div>
-            <div class="admin-form-group">
-                <label for="admin-password">Password</label>
-                <input type="password" id="admin-password" class="form-input" placeholder="Enter password">
-            </div>
-            <button class="btn-primary" id="login-btn">Login</button>
-        </div>
-
-        <div class="admin-content" id="admin-dashboard" style="display: none;">
-            <button class="close-btn" id="close-dashboard-btn">×</button>
-            <h2>Admin Dashboard</h2>
-            <button class="btn-secondary" id="logout-btn" style="float: right; margin-bottom: 1rem;">Logout</button>
-            
-            <div class="admin-section">
-                <h3>About Me <button class="btn-primary" id="edit-about-btn">Edit</button></h3>
-                <div id="about-admin-preview"></div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Job Simulations <button class="btn-primary" id="add-simulation-btn">+ Add New</button></h3>
-                <div id="simulations-admin-list"></div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Projects <button class="btn-primary" id="add-project-btn">+ Add New</button></h3>
-                <div id="projects-admin-list"></div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Certifications <button class="btn-primary" id="add-cert-btn">+ Add New</button></h3>
-                <div id="certs-admin-list"></div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Experience <button class="btn-primary" id="add-exp-btn">+ Add New</button></h3>
-                <div id="exp-admin-list"></div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Tech Stack <button class="btn-primary" id="add-tool-btn">+ Add Category</button></h3>
-                <div id="tools-admin-list"></div>
-            </div>
-        </div>
-
-        <div class="admin-content" id="about-form" style="display: none;">
-            <button class="close-btn" id="close-about-form-btn">×</button>
-            <h2>Edit About Me</h2>
-            <div class="admin-form-group">
-                <label for="about-bio">Bio</label>
-                <textarea id="about-bio" class="form-textarea" rows="4"></textarea>
-            </div>
-            <div class="admin-form-group">
-                <label for="about-institution">Institution</label>
-                <input type="text" id="about-institution" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="about-degree">Degree & Department</label>
-                <input type="text" id="about-degree" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="about-graduation">Expected Graduation</label>
-                <input type="text" id="about-graduation" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label>Soft Skills (Enter and press Enter)</label>
-                <div id="about-skills-tags" class="tag-input-container"></div>
-                <input type="text" id="about-skills-input" class="form-input" placeholder="e.g., Leadership">
-            </div>
-            <div class="admin-form-group">
-                <label for="about-location">Location</label>
-                <input type="text" id="about-location" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="about-github">GitHub URL</label>
-                <input type="text" id="about-github" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="about-linkedin">LinkedIn URL</label>
-                <input type="text" id="about-linkedin" class="form-input">
-            </div>
-            <button class="btn-primary" id="save-about-btn">Save Changes</button>
-        </div>
-
-        <div class="admin-content" id="simulation-form" style="display: none;">
-            <button class="close-btn" id="close-simulation-form-btn">×</button>
-            <h2 id="simulation-form-title">Add New Simulation</h2>
-            <div class="admin-form-group">
-                <label for="sim-company">Company</label>
-                <input type="text" id="sim-company" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="sim-title">Title</label>
-                <input type="text" id="sim-title" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="sim-desc">Description</label>
-                <textarea id="sim-desc" class="form-textarea"></textarea>
-            </div>
-            <button class="btn-primary" id="save-simulation-btn">Save Simulation</button>
-        </div>
-
-        <div class="admin-content" id="project-form" style="display: none;">
-            <button class="close-btn" id="close-project-form-btn">×</button>
-            <h2 id="project-form-title">Add New Project</h2>
-            <div class="admin-form-group">
-                <label for="p-title">Title</label>
-                <input type="text" id="p-title" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="p-id">ID (e.g., my-project)</label>
-                <input type="text" id="p-id" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="p-desc">Description</label>
-                <textarea id="p-desc" class="form-textarea"></textarea>
-            </div>
-            <div class="admin-form-group">
-                <label for="p-githubUrl">GitHub URL</label>
-                <input type="text" id="p-githubUrl" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label>Tech Stack (Enter and press Enter)</label>
-                <div id="p-tech-tags" class="tag-input-container"></div>
-                <input type="text" id="p-tech-input" class="form-input" placeholder="e.g., Python, JavaScript">
-            </div>
-            <div class="admin-form-group">
-                <label>Features (Enter and press Enter)</label>
-                <div id="p-feature-tags" class="tag-input-container"></div>
-                <input type="text" id="p-feature-input" class="form-input" placeholder="e.g., Secure Login">
-            </div>
-            <button class="btn-primary" id="save-project-btn">Save Project</button>
-        </div>
-
-        <div class="admin-content" id="cert-form" style="display: none;">
-            <button class="close-btn" id="close-cert-form-btn">×</button>
-            <h2 id="cert-form-title">Add New Certification</h2>
-            <div class="admin-form-group">
-                <label for="c-title">Title</label>
-                <input type="text" id="c-title" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="c-issuer">Issuer</label>
-                <input type="text" id="c-issuer" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="c-date">Date (e.g., March 2025)</label>
-                <input type="text" id="c-date" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="c-category">Category (e.g., Databases)</label>
-                <input type="text" id="c-category" class="form-input">
-            </div>
-            <button class="btn-primary" id="save-cert-btn">Save Certification</button>
-        </div>
-
-        <div class="admin-content" id="exp-form" style="display: none;">
-            <button class="close-btn" id="close-exp-form-btn">×</button>
-            <h2 id="exp-form-title">Add New Experience</h2>
-            <div class="admin-form-group">
-                <label for="e-role">Role</label>
-                <input type="text" id="e-role" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="e-company">Company/Organization</label>
-                <input type="text" id="e-company" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="e-start">Start Date (e.g., September 2024)</label>
-                <input type="text" id="e-start" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label for="e-end">End Date (e.g., Present)</label>
-                <input type="text" id="e-end" class="form-input">
-            </div>
-            <div class="admin-form-group">
-                <label>Key Responsibilities (Enter and press Enter)</label>
-                <div id="e-bullet-tags" class="tag-input-container"></div>
-                <input type="text" id="e-bullet-input" class="form-input" placeholder="e.g., Lead design strategy">
-            </div>
-            <button class="btn-primary" id="save-exp-btn">Save Experience</button>
-        </div>
-
-    </div>
 
     <script>
         const qs = (selector) => document.querySelector(selector);
@@ -1595,14 +1426,14 @@
                 techStack: ["JavaScript", "QuaggaJS", "JsBarcode", "HTML5 Canvas"],
                 githubUrl: "https://github.com/Esskay1945/ByteScan",
                 features: [
-                        "Real-time barcode scanning using device camera with multi-format support",
-                        "Generate professional barcodes in CODE128, EAN13, UPC, and more formats",
-                        "Batch processing tool creates up to 50 sequential barcodes with custom prefixes",
-                        "Side-by-side barcode comparison for quality control and verification",
-                        "Complete scan history tracking with CSV export functionality",
-                        "One-click clipboard copy and instant product search integration"
-                    ]
-                },
+                    "Real-time barcode scanning using device camera with multi-format support",
+                    "Generate professional barcodes in CODE128, EAN13, UPC, and more formats",
+                    "Batch processing tool creates up to 50 sequential barcodes with custom prefixes",
+                    "Side-by-side barcode comparison for quality control and verification",
+                    "Complete scan history tracking with CSV export functionality",
+                    "One-click clipboard copy and instant product search integration"
+                ]
+            },
             {
                 id: "neuratranslate",
                 title: "NeuraTranslate",
@@ -1610,12 +1441,12 @@
                 techStack: ["HTML5", "CSS3", "JavaScript", "Web Speech API", "Google Translate API", "Speech Recognition API"],
                 githubUrl: "https://github.com/Esskay1945/Neuratranslate",
                 features: [
-                        "Real-time voice input with speech-to-text transcription",
-                        "Support for 250+ languages with automatic language detection",
-                        "Beautiful gradient-based UI with glassmorphism effects",
-                        "Text-to-speech with proper pronunciation in multiple languages",
-                        "Image OCR upload capability for translating text from images",
-                        "Export translations with copy-to-clipboard and download options"
+                    "Real-time voice input with speech-to-text transcription",
+                    "Support for 250+ languages with automatic language detection",
+                    "Beautiful gradient-based UI with glassmorphism effects",
+                    "Text-to-speech with proper pronunciation in multiple languages",
+                    "Image OCR upload capability for translating text from images",
+                    "Export translations with copy-to-clipboard and download options"
                 ]
             },
             {
@@ -1626,62 +1457,62 @@
                 githubUrl: "https://github.com/Esskay1945/Snek",
                 liveUrl: "https://snnekk.netlify.app/",
                 features: [
-            "Four unique game modes: Classic, Obstacles, Portal, and Chaos",
-            "Dynamic power-up system with 6 different abilities (Speed Boost, Shield, Score Multiplier)",
-            "Progressive difficulty with level system and speed increases",
-            "Stunning visual effects with animated particles and smooth transitions",
-            "Multiple food types with varying point values (Normal, Golden, Rainbow)",
-            "Responsive design with keyboard controls and pause functionality"
-        ]
-    },
-    {
-        id: "sudoku-master",
-        title: "Sudoku Master",
-        description: "A beautiful, interactive Sudoku game with multiple difficulty levels and grid sizes. Features the challenging Sudoku-X variant with diagonal constraints, real-time validation, and an elegant gradient-themed UI. Built with vanilla HTML, CSS, and JavaScript - no dependencies required.",
-        techStack: ["HTML5", "CSS3", "Vanilla JavaScript", "CSS Grid", "Pattern-Based Algorithm"],
-        githubUrl: "https://github.com/Esskay1945/SudokuMaster",
-        liveUrl: "https://sudokku.netlify.app/",
-        features: [
-            "Five difficulty levels from Easy (45 clues) to Legend (22 clues)",
-            "Dual grid sizes: Classic 9×9 and Mega 16×16 with hexadecimal notation",
-            "Sudoku-X variant with diagonal constraint validation",
-            "Real-time error highlighting with shake animations",
-            "Intuitive number pad input and cell validation system",
-            "Victory modal with statistics and responsive mobile-friendly design"
-        ]
-    },
-    {
-        id: "neon-breakout",
-        title: "Neon Breakout",
-        description: "A stunning modern take on the classic brick-breaker game with vibrant neon visuals, power-ups, and addictive gameplay. Features animated gradient backgrounds, particle explosions, combo scoring system, and progressive difficulty. Built entirely with pure web technologies.",
-        techStack: ["HTML5 Canvas", "CSS3", "Vanilla JavaScript", "Canvas API", "CSS Animations"],
-        githubUrl: "https://github.com/Esskay1945/Neon-Breaker",
-        liveUrl: "https://neonbreakerr.netlify.app/",
-        features: [
-            "Six powerful power-ups: Multi-Ball, Wide Paddle, Slow Motion, Fire Ball, Extra Life, and Laser Paddle",
-            "Dynamic combo system with score multipliers and bonus points",
-            "Progressive difficulty with increasing brick rows per level",
-            "Stunning visual effects with neon glow, particle explosions, and ball trails",
-            "Multi-hit bricks requiring strategic gameplay and planning",
-            "Dual control support with arrow keys and mouse movement"
-        ]
-    },
-    {
-        id: "mindgrid",
-        title: "MindGrid - Memory Adventure",
-        description: "A colorful and engaging memory matching game designed for children, featuring smooth 3D card flip animations, emoji-based themes, and celebratory effects. Built with pure HTML, CSS, and JavaScript, offering multiple difficulty levels and themed collections.",
-        techStack: ["HTML5", "CSS3", "Vanilla JavaScript", "CSS 3D Transforms", "CSS Grid"],
-        githubUrl: "https://github.com/Esskay1945/Mindgrid",
-        liveUrl: "https://mindgridd.netlify.app/",
-        features: [
-            "Three difficulty levels: Easy (4×4), Medium (7×7), and Hard (9×9) grids",
-            "Four fun themes: Animals, Food, Cars, and Bikes with 40+ emojis each",
-            "Smooth 3D card flip animations with perspective transforms",
-            "Animated rainbow gradient background with twinkling star effects",
-            "Victory celebration with emoji rain and confetti explosion",
-            "Comprehensive scoring system tracking time, moves, and points"
-        ]
-    }
+                    "Four unique game modes: Classic, Obstacles, Portal, and Chaos",
+                    "Dynamic power-up system with 6 different abilities (Speed Boost, Shield, Score Multiplier)",
+                    "Progressive difficulty with level system and speed increases",
+                    "Stunning visual effects with animated particles and smooth transitions",
+                    "Multiple food types with varying point values (Normal, Golden, Rainbow)",
+                    "Responsive design with keyboard controls and pause functionality"
+                ]
+            },
+            {
+                id: "sudoku-master",
+                title: "Sudoku Master",
+                description: "A beautiful, interactive Sudoku game with multiple difficulty levels and grid sizes. Features the challenging Sudoku-X variant with diagonal constraints, real-time validation, and an elegant gradient-themed UI. Built with vanilla HTML, CSS, and JavaScript - no dependencies required.",
+                techStack: ["HTML5", "CSS3", "Vanilla JavaScript", "CSS Grid", "Pattern-Based Algorithm"],
+                githubUrl: "https://github.com/Esskay1945/SudokuMaster",
+                liveUrl: "https://sudokku.netlify.app/",
+                features: [
+                    "Five difficulty levels from Easy (45 clues) to Legend (22 clues)",
+                    "Dual grid sizes: Classic 9×9 and Mega 16×16 with hexadecimal notation",
+                    "Sudoku-X variant with diagonal constraint validation",
+                    "Real-time error highlighting with shake animations",
+                    "Intuitive number pad input and cell validation system",
+                    "Victory modal with statistics and responsive mobile-friendly design"
+                ]
+            },
+            {
+                id: "neon-breakout",
+                title: "Neon Breakout",
+                description: "A stunning modern take on the classic brick-breaker game with vibrant neon visuals, power-ups, and addictive gameplay. Features animated gradient backgrounds, particle explosions, combo scoring system, and progressive difficulty. Built entirely with pure web technologies.",
+                techStack: ["HTML5 Canvas", "CSS3", "Vanilla JavaScript", "Canvas API", "CSS Animations"],
+                githubUrl: "https://github.com/Esskay1945/Neon-Breaker",
+                liveUrl: "https://neonbreakerr.netlify.app/",
+                features: [
+                    "Six powerful power-ups: Multi-Ball, Wide Paddle, Slow Motion, Fire Ball, Extra Life, and Laser Paddle",
+                    "Dynamic combo system with score multipliers and bonus points",
+                    "Progressive difficulty with increasing brick rows per level",
+                    "Stunning visual effects with neon glow, particle explosions, and ball trails",
+                    "Multi-hit bricks requiring strategic gameplay and planning",
+                    "Dual control support with arrow keys and mouse movement"
+                ]
+            },
+            {
+                id: "mindgrid",
+                title: "MindGrid - Memory Adventure",
+                description: "A colorful and engaging memory matching game designed for children, featuring smooth 3D card flip animations, emoji-based themes, and celebratory effects. Built with pure HTML, CSS, and JavaScript, offering multiple difficulty levels and themed collections.",
+                techStack: ["HTML5", "CSS3", "Vanilla JavaScript", "CSS 3D Transforms", "CSS Grid"],
+                githubUrl: "https://github.com/Esskay1945/Mindgrid",
+                liveUrl: "https://mindgridd.netlify.app/",
+                features: [
+                    "Three difficulty levels: Easy (4×4), Medium (7×7), and Hard (9×9) grids",
+                    "Four fun themes: Animals, Food, Cars, and Bikes with 40+ emojis each",
+                    "Smooth 3D card flip animations with perspective transforms",
+                    "Animated rainbow gradient background with twinkling star effects",
+                    "Victory celebration with emoji rain and confetti explosion",
+                    "Comprehensive scoring system tracking time, moves, and points"
+                ]
+            }
         ];
 
         let certificationsData = [
@@ -1699,51 +1530,51 @@
             { id: "rising-star", title: "Rising Star - Business", issuer: "Celonis", date: "June 2025", category: "Business Analytics" },
             { id: "dbms", title: "DBMS Course - Master the Fundamentals and Advanced Concepts", issuer: "Scaler Topics", date: "March 2025", category: "Databases" }
         ];
-        
+
         let experienceData = [
-            { 
-                role: "Co-Head: Design", 
-                company: "DevOps Club, APSIT", 
-                start: "September 2024", 
-                end: "Present", 
-                bullets: [ 
-                    "Lead visual design strategy for club events, workshops, and digital presence", 
-                    "Create branding assets including posters, presentations, and social media content", 
-                    "Collaborate with core team members to establish consistent brand identity" 
-                ] 
+            {
+                role: "Co-Head: Design",
+                company: "DevOps Club, APSIT",
+                start: "September 2024",
+                end: "Present",
+                bullets: [
+                    "Lead visual design strategy for club events, workshops, and digital presence",
+                    "Create branding assets including posters, presentations, and social media content",
+                    "Collaborate with core team members to establish consistent brand identity"
+                ]
             },
-            { 
-                role: "Head: Event Management", 
-                company: "Cyber Security Club, APSIT", 
-                start: "September 2024", 
-                end: "Present", 
-                bullets: [ 
-                    "Organize and manage multiple college-level technical events", 
-                    "Handle logistics, promotion, and execution for cybersecurity workshops", 
-                    "Coordinate with cross-functional teams to ensure smooth operations" 
-                ] 
+            {
+                role: "Head: Event Management",
+                company: "Cyber Security Club, APSIT",
+                start: "September 2024",
+                end: "Present",
+                bullets: [
+                    "Organize and manage multiple college-level technical events",
+                    "Handle logistics, promotion, and execution for cybersecurity workshops",
+                    "Coordinate with cross-functional teams to ensure smooth operations"
+                ]
             },
-            { 
-                role: "AIML Club Member", 
-                company: "APSIT", 
-                start: "September 2024", 
-                end: "Present", 
-                bullets: [ 
-                    "Actively participate in workshops, discussions, and technical activities", 
-                    "Contribute to machine learning and AI knowledge-sharing sessions" 
-                ] 
+            {
+                role: "AIML Club Member",
+                company: "APSIT",
+                start: "September 2024",
+                end: "Present",
+                bullets: [
+                    "Actively participate in workshops, discussions, and technical activities",
+                    "Contribute to machine learning and AI knowledge-sharing sessions"
+                ]
             },
-            { 
-                role: "Teacher", 
-                company: "Shree Mayuresh Tutorials, Kalyan, India", 
-                start: "May 2023", 
-                end: "Present", 
-                bullets: [ 
+            {
+                role: "Teacher",
+                company: "Shree Mayuresh Tutorials, Kalyan, India",
+                start: "May 2023",
+                end: "Present",
+                bullets: [
                     "Conducted supervised learning sessions to enhance peer learning experiences and improve student outcomes",
                     "Implemented effective classroom management techniques to foster positive learning environments",
                     "Assessed student performance through tests and assignments to guide personalized instruction",
                     "Specialized in data analysis education for effective communication strategies"
-                ] 
+                ]
             }
         ];
 
@@ -1755,22 +1586,41 @@
             "Cloud & DevOps": ["Cloud Computing (JNCIA-Cloud)", "Linux", "GitHub"],
             "Data Skills": ["Data Analysis", "Data Visualization", "Power BI", "Process Mining", "Database Management Systems"]
         };
-        
+
         let currentView = 'home';
         let projectsScrollPos = 0;
 
         function switchView(viewName) {
             if (viewName === currentView) return;
 
-            qsa('.view').forEach(view => view.classList.remove('active'));
+            // Fade out current view
+            const currentViewEl = qs('.view.active');
+            if (currentViewEl) {
+                currentViewEl.style.opacity = '0';
+                currentViewEl.classList.remove('active');
+            }
+
             qsa('.nav-link').forEach(link => link.classList.remove('active'));
 
-            qs(`#${viewName}-view`).classList.add('active');
+            const targetView = qs(`#${viewName}-view`);
+            if (targetView) {
+                targetView.classList.add('active');
+                // Small delay to allow display:block to apply before opacity transition
+                setTimeout(() => {
+                    targetView.style.opacity = '1';
+                }, 10);
+            }
+
             const activeLink = qs(`.nav-link[data-view="${viewName}"]`);
             if (activeLink) activeLink.classList.add('active');
-            
+
             currentView = viewName;
 
+            if (viewName !== 'project-detail-view') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Render content
             if (viewName === 'projects') renderProjects();
             if (viewName === 'tools') renderTools();
             if (viewName === 'experience') renderExperience();
@@ -1779,10 +1629,6 @@
                 renderCertifications();
             }
             if (viewName === 'about') renderAbout();
-
-            if (viewName !== 'project-detail-view') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
         }
 
         function renderAbout() {
@@ -1842,7 +1688,7 @@
                 section.innerHTML = '';
                 return;
             }
-            
+
             section.innerHTML = `
                 <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: hsl(var(--gold-light)); margin-bottom: 1.5rem; text-align: center;">Industry Job Simulations</h3>
                 ${simulationsData.map((sim, index) => `
@@ -1883,7 +1729,7 @@
 
         function showProjectDetail(id) {
             const project = projectsData.find(p => p.id === id);
-            
+
             if (!project) {
                 alert("Project details could not be loaded.");
                 return;
@@ -1900,11 +1746,11 @@
                         <h1 class="detail-title text-gradient-gold">${project.title}</h1>
                         <p class="detail-desc">${project.description}</p>
                         
-                        ${project.githubUrl ? 
-                            `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary project-action-btn">
+                        ${project.githubUrl ?
+                    `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary project-action-btn">
                                 View on GitHub 🔗
-                            </a>` 
-                            : ''}
+                            </a>`
+                    : ''}
                     </div>
                 </div>
 
@@ -1953,6 +1799,28 @@
             `).join('');
         }
 
+        function renderSimulations() {
+            const section = qs('#simulations-section');
+            if (!section) return; // Guard clause in case element is missing
+
+            if (simulationsData.length === 0) {
+                section.innerHTML = '';
+                return;
+            }
+
+            section.innerHTML = `
+                <div style="margin-bottom: 2rem;">
+                    ${simulationsData.map((sim, index) => `
+                        <div class="simulation-card card-cinematic animate-fade-in" style="animation-delay: ${0.1 + index * 0.1}s;">
+                            <h4 class="simulation-title">${sim.title}</h4>
+                            <p class="simulation-company">${sim.company}</p>
+                            <p class="simulation-desc">${sim.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
         function renderCertifications() {
             const grid = qs('#certs-grid');
             if (certificationsData.length === 0) {
@@ -1982,10 +1850,14 @@
 
         function init() {
             qs('#current-year').textContent = new Date().getFullYear();
-            
+
             const greetingElement = qs('#time-based-greeting');
             if (greetingElement) {
                 greetingElement.textContent = getGreeting();
+                // Retrigger animation
+                greetingElement.classList.remove('animate-greeting');
+                void greetingElement.offsetWidth; // Force reflow
+                greetingElement.classList.add('animate-greeting');
             }
 
             qsa('.nav-link').forEach(link => {
@@ -2026,9 +1898,6 @@
             switchView('home');
         }
 
-        const adminEmail = 'gojo194506@gmail.com';
-        const adminPassword = 'Coffee@030903';
-
         function saveToStorage() {
             const data = {
                 about: aboutData,
@@ -2057,592 +1926,11 @@
                 }
             }
         }
-        
-        function openAdminLogin() {
-            qs('#admin-modal').classList.add('active');
-            qs('#admin-login-content').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-            qs('#about-form').style.display = 'none';
-            qs('#simulation-form').style.display = 'none';
-            qs('#project-form').style.display = 'none';
-            qs('#cert-form').style.display = 'none';
-            qs('#exp-form').style.display = 'none';
-        }
 
-        function closeAdminModal() {
-            qs('#admin-modal').classList.remove('active');
-        }
-
-        function loginAdmin() {
-            const email = qs('#admin-email').value;
-            const password = qs('#admin-password').value;
-
-            if (email === adminEmail && password === adminPassword) {
-                localStorage.setItem('isAdmin', 'true');
-                qs('#admin-login-content').style.display = 'none';
-                qs('#admin-dashboard').style.display = 'block';
-                qs('.admin-btn').style.display = 'block';
-                alert('Admin Login Successful!');
-                renderAdminDashboard();
-            } else {
-                alert('Invalid Credentials');
-            }
-        }
-
-        function logoutAdmin() {
-            if (!confirm('Are you sure you want to log out?')) return;
-            localStorage.removeItem('isAdmin');
-            qs('.admin-btn').style.display = 'block';
-            closeAdminModal();
-        }
-
-        function checkAdminStatus() {
-            qs('.admin-btn').style.display = 'block';
-        }
-
-        function renderAdminDashboard() {
-            if (localStorage.getItem('isAdmin') !== 'true') return;
-            
-            qs('#admin-modal').classList.add('active');
-            qs('#admin-login-content').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-
-            renderAboutAdmin();
-            renderSimulationsAdmin();
-            renderProjectsAdmin();
-            renderCertsAdmin();
-            renderExpAdmin();
-            renderToolsAdmin();
-        }
-
-        // ABOUT ME ADMIN
-        let aboutSkillsTags = [];
-
-        function renderAboutAdmin() {
-            const preview = qs('#about-admin-preview');
-            preview.innerHTML = `
-                <div style="background: hsl(var(--charcoal-light)); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
-                    <p><strong>Bio:</strong> ${aboutData.bio.substring(0, 100)}...</p>
-                    <p><strong>Institution:</strong> ${aboutData.institution}</p>
-                    <p><strong>Skills:</strong> ${aboutData.skills.join(', ')}</p>
-                </div>
-            `;
-        }
-
-        function openAboutForm() {
-            qs('#about-form').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-
-            qs('#about-bio').value = aboutData.bio;
-            qs('#about-institution').value = aboutData.institution;
-            qs('#about-degree').value = aboutData.degree;
-            qs('#about-graduation').value = aboutData.graduation;
-            qs('#about-location').value = aboutData.location;
-            qs('#about-email').value = aboutData.email;
-            qs('#about-phone').value = aboutData.phone;
-            qs('#about-github').value = aboutData.github;
-            qs('#about-linkedin').value = aboutData.linkedin;
-
-            aboutSkillsTags = [...aboutData.skills];
-            renderTags(qs('#about-skills-tags'), aboutSkillsTags, 'removeAboutSkill');
-        }
-
-        function closeAboutForm() {
-            qs('#about-form').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-        }
-
-        qs('#about-skills-input').addEventListener('keydown', (e) => addTag(e, aboutSkillsTags, '#about-skills-tags', 'removeAboutSkill'));
-        function removeAboutSkill(index) {
-            aboutSkillsTags.splice(index, 1);
-            renderTags(qs('#about-skills-tags'), aboutSkillsTags, 'removeAboutSkill');
-        }
-
-        function saveAbout() {
-            aboutData.bio = qs('#about-bio').value.trim();
-            aboutData.institution = qs('#about-institution').value.trim();
-            aboutData.degree = qs('#about-degree').value.trim();
-            aboutData.graduation = qs('#about-graduation').value.trim();
-            aboutData.location = qs('#about-location').value.trim();
-            aboutData.github = qs('#about-github').value.trim();
-            aboutData.linkedin = qs('#about-linkedin').value.trim();
-            aboutData.skills = aboutSkillsTags;
-
-            saveToStorage();
-            renderAboutAdmin();
-            if (currentView === 'about') renderAbout();
-            alert('About Me updated successfully!');
-            closeAboutForm();
-        }
-
-        // JOB SIMULATIONS ADMIN
-        let editSimulationIndex = -1;
-
-        function renderSimulationsAdmin() {
-            const list = qs('#simulations-admin-list');
-            list.innerHTML = simulationsData.map((sim, i) => `
-                <div class="admin-item">
-                    <div>
-                        <h4>${sim.title}</h4>
-                        <p><strong>${sim.company}</strong></p>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editSimulation(${i})">Edit</button>
-                        <button class="btn-delete" onclick="deleteSimulation(${i})">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openSimulationForm(index = -1) {
-            editSimulationIndex = index;
-            qs('#simulation-form').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-
-            const sim = index !== -1 ? simulationsData[index] : { company: '', title: '', description: '' };
-            
-            qs('#simulation-form-title').textContent = index !== -1 ? 'Edit Simulation' : 'Add New Simulation';
-            qs('#sim-company').value = sim.company;
-            qs('#sim-title').value = sim.title;
-            qs('#sim-desc').value = sim.description;
-        }
-
-        function closeSimulationForm() {
-            qs('#simulation-form').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-            editSimulationIndex = -1;
-        }
-
-        function saveSimulation() {
-            const company = qs('#sim-company').value.trim();
-            const title = qs('#sim-title').value.trim();
-            const description = qs('#sim-desc').value.trim();
-            const id = title.toLowerCase().replace(/\s+/g, '-').trim();
-
-            if (!company || !title || !description) {
-                alert('All fields are required!');
-                return;
-            }
-
-            const newSim = { id, company, title, description };
-
-            if (editSimulationIndex !== -1) {
-                simulationsData[editSimulationIndex] = newSim;
-                alert('Simulation updated successfully!');
-            } else {
-                simulationsData.push(newSim);
-                alert('Simulation added successfully!');
-            }
-
-            saveToStorage();
-            renderSimulationsAdmin();
-            if (currentView === 'certifications') renderSimulations();
-            closeSimulationForm();
-        }
-
-        function editSimulation(index) {
-            openSimulationForm(index);
-        }
-
-        function deleteSimulation(index) {
-            if (!confirm('Delete this simulation?')) return;
-            simulationsData.splice(index, 1);
-            saveToStorage();
-            renderSimulationsAdmin();
-            if (currentView === 'certifications') renderSimulations();
-        }
-
-        // PROJECTS ADMIN
-        let editProjectIndex = -1;
-        let pTechTags = [];
-        let pFeatureTags = [];
-
-        function renderProjectsAdmin() {
-            const list = qs('#projects-admin-list');
-            list.innerHTML = projectsData.map((p, i) => `
-                <div class="admin-item">
-                    <div>
-                        <h4>${p.title}</h4>
-                        <p><strong>ID:</strong> ${p.id}</p>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editProject(${i})">Edit</button>
-                        <button class="btn-delete" onclick="deleteProject(${i})">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openProjectForm(index = -1) {
-            editProjectIndex = index;
-            qs('#project-form').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-            
-            const p = index !== -1 ? projectsData[index] : { title: '', id: '', description: '', githubUrl: '', techStack: [], features: [] };
-            
-            qs('#project-form-title').textContent = index !== -1 ? 'Edit Project' : 'Add New Project';
-            qs('#p-title').value = p.title;
-            qs('#p-id').value = p.id;
-            qs('#p-desc').value = p.description;
-            qs('#p-githubUrl').value = p.githubUrl;
-
-            qs('#p-id').disabled = index !== -1;
-
-            pTechTags = [...p.techStack];
-            pFeatureTags = [...p.features];
-
-            renderTags(qs('#p-tech-tags'), pTechTags, 'removeTechTag');
-            renderTags(qs('#p-feature-tags'), pFeatureTags, 'removeFeatureTag');
-        }
-
-        function closeProjectForm() {
-            qs('#project-form').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-            editProjectIndex = -1;
-        }
-
-        function renderTags(container, tags, removeFunction) {
-            container.innerHTML = tags.map((tag, index) => `
-                <span class="tag-input-item">${tag} <button class="tag-remove" onclick="${removeFunction}(${index})">×</button></span>
-            `).join('');
-        }
-
-        function addTag(e, tagsArray, containerId, removeFunction) {
-            if (e.key === 'Enter' || e.key === ',') {
-                e.preventDefault();
-                const input = e.target;
-                const tag = input.value.replace(/,$/, '').trim();
-                if (tag && !tagsArray.includes(tag)) {
-                    tagsArray.push(tag);
-                    input.value = '';
-                    renderTags(qs(containerId), tagsArray, removeFunction);
-                }
-            }
-        }
-
-        qs('#p-tech-input').addEventListener('keydown', (e) => addTag(e, pTechTags, '#p-tech-tags', 'removeTechTag'));
-        function removeTechTag(index) {
-            pTechTags.splice(index, 1);
-            renderTags(qs('#p-tech-tags'), pTechTags, 'removeTechTag');
-        }
-
-        qs('#p-feature-input').addEventListener('keydown', (e) => addTag(e, pFeatureTags, '#p-feature-tags', 'removeFeatureTag'));
-        function removeFeatureTag(index) {
-            pFeatureTags.splice(index, 1);
-            renderTags(qs('#p-feature-tags'), pFeatureTags, 'removeFeatureTag');
-        }
-
-        function saveProject() {
-            const id = qs('#p-id').value.toLowerCase().replace(/\s+/g, '-').trim();
-            const title = qs('#p-title').value.trim();
-            const description = qs('#p-desc').value.trim();
-            const githubUrl = qs('#p-githubUrl').value.trim();
-
-            if (!title || !id || !description) {
-                alert('Title, ID, and Description are required!');
-                return;
-            }
-
-            const newProject = {
-                id, title, description, githubUrl,
-                techStack: pTechTags,
-                features: pFeatureTags
-            };
-
-            if (editProjectIndex !== -1) {
-                projectsData[editProjectIndex] = newProject;
-                alert('Project updated successfully!');
-            } else {
-                if (projectsData.find(p => p.id === id)) {
-                    alert('Project with this ID already exists!');
-                    return;
-                }
-                projectsData.push(newProject);
-                alert('Project added successfully!');
-            }
-
-            saveToStorage();
-            renderProjectsAdmin();
-            if (currentView === 'projects' || currentView === 'project-detail-view') renderProjects();
-            closeProjectForm();
-        }
-
-        function editProject(index) {
-            openProjectForm(index);
-        }
-
-        function deleteProject(index) {
-            if (!confirm('Delete this project?')) return;
-            projectsData.splice(index, 1);
-            saveToStorage();
-            renderProjectsAdmin();
-            if (currentView === 'projects' || currentView === 'project-detail-view') renderProjects();
-        }
-
-        // CERTIFICATIONS ADMIN
-        let editCertIndex = -1;
-
-        function renderCertsAdmin() {
-            const list = qs('#certs-admin-list');
-            list.innerHTML = certificationsData.map((c, i) => `
-                <div class="admin-item">
-                    <div>
-                        <h4>${c.title}</h4>
-                        <p><strong>${c.issuer}</strong> • ${c.date}</p>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editCert(${i})">Edit</button>
-                        <button class="btn-delete" onclick="deleteCert(${i})">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openCertForm(index = -1) {
-            editCertIndex = index;
-            qs('#cert-form').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-
-            const c = index !== -1 ? certificationsData[index] : { title: '', issuer: '', date: '', category: '' };
-            
-            qs('#cert-form-title').textContent = index !== -1 ? 'Edit Certification' : 'Add New Certification';
-            qs('#c-title').value = c.title;
-            qs('#c-issuer').value = c.issuer;
-            qs('#c-date').value = c.date;
-            qs('#c-category').value = c.category;
-        }
-
-        function closeCertForm() {
-            qs('#cert-form').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-            editCertIndex = -1;
-        }
-
-        function saveCert() {
-            const title = qs('#c-title').value.trim();
-            const issuer = qs('#c-issuer').value.trim();
-            const date = qs('#c-date').value.trim();
-            const category = qs('#c-category').value.trim();
-            const id = title.toLowerCase().replace(/\s+/g, '-').trim();
-
-            if (!title || !issuer || !date || !category) {
-                alert('All fields are required!');
-                return;
-            }
-
-            const newCert = { id, title, issuer, date, category };
-
-            if (editCertIndex !== -1) {
-                certificationsData[editCertIndex] = newCert;
-                alert('Certification updated successfully!');
-            } else {
-                certificationsData.push(newCert);
-                alert('Certification added successfully!');
-            }
-
-            saveToStorage();
-            renderCertsAdmin();
-            if (currentView === 'certifications') renderCertifications();
-            closeCertForm();
-        }
-
-        function editCert(index) {
-            openCertForm(index);
-        }
-
-        function deleteCert(index) {
-            if (!confirm('Delete this certification?')) return;
-            certificationsData.splice(index, 1);
-            saveToStorage();
-            renderCertsAdmin();
-            if (currentView === 'certifications') renderCertifications();
-        }
-
-        // EXPERIENCE ADMIN
-        let editExpIndex = -1;
-        let eBulletTags = [];
-
-        function renderExpAdmin() {
-            const list = qs('#exp-admin-list');
-            list.innerHTML = experienceData.map((e, i) => `
-                <div class="admin-item">
-                    <div>
-                        <h4>${e.role} at ${e.company}</h4>
-                        <p>${e.start} - ${e.end}</p>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editExp(${i})">Edit</button>
-                        <button class="btn-delete" onclick="deleteExp(${i})">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openExpForm(index = -1) {
-            editExpIndex = index;
-            qs('#exp-form').style.display = 'block';
-            qs('#admin-dashboard').style.display = 'none';
-
-            const e = index !== -1 ? experienceData[index] : { role: '', company: '', start: '', end: '', bullets: [] };
-            
-            qs('#exp-form-title').textContent = index !== -1 ? 'Edit Experience' : 'Add New Experience';
-            qs('#e-role').value = e.role;
-            qs('#e-company').value = e.company;
-            qs('#e-start').value = e.start;
-            qs('#e-end').value = e.end;
-
-            eBulletTags = [...e.bullets];
-            renderTags(qs('#e-bullet-tags'), eBulletTags, 'removeExpBullet');
-        }
-
-        function closeExpForm() {
-            qs('#exp-form').style.display = 'none';
-            qs('#admin-dashboard').style.display = 'block';
-            editExpIndex = -1;
-        }
-
-        qs('#e-bullet-input').addEventListener('keydown', (e) => addTag(e, eBulletTags, '#e-bullet-tags', 'removeExpBullet'));
-        function removeExpBullet(index) {
-            eBulletTags.splice(index, 1);
-            renderTags(qs('#e-bullet-tags'), eBulletTags, 'removeExpBullet');
-        }
-
-        function saveExp() {
-            const role = qs('#e-role').value.trim();
-            const company = qs('#e-company').value.trim();
-            const start = qs('#e-start').value.trim();
-            const end = qs('#e-end').value.trim();
-
-            if (!role || !company || !start || !end || eBulletTags.length === 0) {
-                alert('All fields and at least one key responsibility are required!');
-                return;
-            }
-
-            const newExp = { role, company, start, end, bullets: eBulletTags };
-
-            if (editExpIndex !== -1) {
-                experienceData[editExpIndex] = newExp;
-            } else {
-                experienceData.push(newExp);
-            }
-
-            saveToStorage();
-            renderExpAdmin();
-            if (currentView === 'experience') renderExperience();
-            alert('Experience updated successfully!');
-            closeExpForm();
-        }
-
-        function editExp(index) {
-            openExpForm(index);
-        }
-
-        function deleteExp(index) {
-            if (!confirm('Delete this experience?')) return;
-            experienceData.splice(index, 1);
-            saveToStorage();
-            renderExpAdmin();
-            if (currentView === 'experience') renderExperience();
-        }
-
-        // TOOLS ADMIN
-        function renderToolsAdmin() {
-            const list = qs('#tools-admin-list');
-            list.innerHTML = Object.keys(toolsData).map(category => `
-                <div class="admin-item">
-                    <div>
-                        <h4>${category}</h4>
-                        <p>${toolsData[category].join(', ')}</p>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editToolCategory('${category}')">Edit</button>
-                        <button class="btn-delete" onclick="deleteToolCategory('${category}')">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function addToolCategory() {
-            const category = prompt('New Category Name:');
-            if (!category) return;
-            
-            if (toolsData[category]) {
-                alert('Category already exists!');
-                return;
-            }
-            
-            const toolsInput = prompt('Tools (comma-separated):');
-            toolsData[category] = toolsInput ? toolsInput.split(',').map(t => t.trim()) : [];
-            
-            saveToStorage();
-            renderToolsAdmin();
-            if (currentView === 'tools') renderTools();
-            alert('Tool category added successfully!');
-        }
-
-        function editToolCategory(category) {
-            const newName = prompt('Category Name:', category);
-            if (!newName) return;
-            
-            const toolsInput = prompt('Tools (comma-separated):', toolsData[category].join(', '));
-            
-            if (newName !== category) {
-                toolsData[newName] = toolsData[category];
-                delete toolsData[category];
-                category = newName; 
-            }
-            
-            toolsData[category] = toolsInput ? toolsInput.split(',').map(t => t.trim()) : [];
-            
-            saveToStorage();
-            renderToolsAdmin();
-            if (currentView === 'tools') renderTools();
-            alert('Tool category updated successfully!');
-        }
-
-        function deleteToolCategory(category) {
-            if (!confirm(`Delete "${category}" category?`)) return;
-            delete toolsData[category];
-            saveToStorage();
-            renderToolsAdmin();
-            if (currentView === 'tools') renderTools();
-        }
-
-        // EVENT LISTENERS
-        qs('#open-admin-modal').addEventListener('click', openAdminLogin);
-        qs('#close-login-btn').addEventListener('click', closeAdminModal);
-        qs('#close-dashboard-btn').addEventListener('click', closeAdminModal);
-        qs('#close-about-form-btn').addEventListener('click', closeAboutForm);
-        qs('#close-simulation-form-btn').addEventListener('click', closeSimulationForm);
-        qs('#close-project-form-btn').addEventListener('click', closeProjectForm);
-        qs('#close-cert-form-btn').addEventListener('click', closeCertForm);
-        qs('#close-exp-form-btn').addEventListener('click', closeExpForm);
-        qs('#login-btn').addEventListener('click', loginAdmin);
-        qs('#logout-btn').addEventListener('click', logoutAdmin);
-        qs('#edit-about-btn').addEventListener('click', openAboutForm);
-        qs('#add-simulation-btn').addEventListener('click', () => openSimulationForm());
-        qs('#add-project-btn').addEventListener('click', () => openProjectForm());
-        qs('#add-cert-btn').addEventListener('click', () => openCertForm());
-        qs('#add-exp-btn').addEventListener('click', () => openExpForm());
-        qs('#add-tool-btn').addEventListener('click', addToolCategory);
-        qs('#save-about-btn').addEventListener('click', saveAbout);
-        qs('#save-simulation-btn').addEventListener('click', saveSimulation);
-        qs('#save-project-btn').addEventListener('click', saveProject);
-        qs('#save-cert-btn').addEventListener('click', saveCert);
-        qs('#save-exp-btn').addEventListener('click', saveExp);
-
+        // Initialize application
         loadFromStorage();
-        checkAdminStatus();
         init();
     </script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
